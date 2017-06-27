@@ -11,7 +11,7 @@
                     {
                         "manipulators": [
                             {
-                                "description": "Change caps_lock to control when used as modifier, backspace when used alone",
+                                "description": "Change caps_lock to left_control when used as a modifier, otherwise use it as escape",
                                 "from": {
                                     "key_code": "caps_lock",
                                     "modifiers": {
@@ -22,7 +22,7 @@
                                 },
                                 "parameters": {
                                     "basic": {
-                                        "to_if_alone_timeout_milliseconds": 500
+                                        "to_if_alone_timeout_miliseconds": 500
                                     }
                                 },
                                 "to": [
@@ -32,84 +32,12 @@
                                 ],
                                 "to_if_alone": [
                                     {
-                                        "key_code": "delete_or_backspace",
+                                        "key_code": "escape",
                                         "modifiers": {
                                             "optional": [
                                                 "any"
                                             ]
                                         }
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "description": "Change return to control when used as modifier, return when used alone",
-                                "from": {
-                                    "key_code": "return_or_enter",
-                                    "modifiers": {
-                                        "optional": [
-                                            "any"
-                                        ]
-                                    }
-                                },
-                                "parameters": {
-                                    "basic": {
-                                        "to_if_alone_timeout_milliseconds": 500
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "right_control"
-                                    }
-                                ],
-                                "to_if_alone": [
-                                    {
-                                        "key_code": "return_or_enter",
-                                        "modifiers": {
-                                            "optional": [
-                                                "any"
-                                            ]
-                                        }
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "description": "Left and Right Shift together -> Caps Lock",
-                                "from": {
-                                    "key_code": "right_shift",
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "left_shift"
-                                        ],
-                                        "optional": [
-                                            "any"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "caps_lock"
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "description": "Right and Left Shift together -> Caps Lock",
-                                "from": {
-                                    "key_code": "left_shift",
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "right_shift"
-                                        ],
-                                        "optional": [
-                                            "any"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "caps_lock"
                                     }
                                 ],
                                 "type": "basic"
@@ -133,7 +61,7 @@
                 "f8": "play_or_pause",
                 "f9": "fastforward"
             },
-            "name": "Develop Mode",
+            "name": "Develop mode",
             "selected": true,
             "simple_modifications": {
                 "caps_lock": "left_control"
@@ -159,7 +87,7 @@
                 "f8": "play_or_pause",
                 "f9": "fastforward"
             },
-            "name": "Normal Mode",
+            "name": "Normal mode",
             "selected": false,
             "simple_modifications": {},
             "virtual_hid_keyboard": {
