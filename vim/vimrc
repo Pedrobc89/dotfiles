@@ -2,9 +2,27 @@
 set nocompatible
 filetype off			" required
 syntax on
+set backspace=2   " Backspace deletes like most programs in insert mode
+set nobackup
+set nowritebackup
+set ruler         " show the cursor position all the time
+set showcmd       " display incomplete commands
+set incsearch     " do incremental searching
+set laststatus=2  " Always display the status line
+set autowrite     " Automatically :write before running commands
+
+" Softtabs, 2 spaces
+set tabstop=2
+set shiftwidth=2
+set shiftround
+set expandtab
 
 " Set clipboard compatibility
 set clipboard=unnamed
+
+" Make it obvious where 80 characters is
+set textwidth=80
+set colorcolumn=+1
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.dotfiles/vim/bundle/Vundle.vim
