@@ -11,6 +11,11 @@ set incsearch     " do incremental searching
 set laststatus=2  " Always display the status line
 set autowrite     " Automatically :write before running commands
 
+
+" Relative Numbering
+set relativenumber
+set number
+
 " Softtabs, 2 spaces
 set tabstop=2
 set shiftwidth=2
@@ -22,7 +27,7 @@ set clipboard=unnamed
 
 " Make it obvious where 80 characters is
 set textwidth=80
-set colorcolumn=+1
+set colorcolumn=+2
 
 " Vundle plugins
 source ~/.dotfiles/vim/vimrc.vundle

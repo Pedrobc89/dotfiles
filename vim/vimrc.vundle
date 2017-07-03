@@ -11,13 +11,29 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
+" Fuzzy file finder system
 Plugin 'ctrlpvim/ctrlp.vim'
+
+" Auto Completion 
+" Can't get this to work
+" Plugin 'Valloric/YouCompleteMe'
+
+" Snippets
+" Track the engine.
+Plugin 'SirVer/ultisnips'
+
+" Snippets are separated from the engine. Add this if you want them:
+Plugin 'honza/vim-snippets'
+
+" Rails
+" Plugin 'vim.rails'
 
 " Base 16 color plugin
 Plugin 'chriskempson/base16-vim'
 
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
+" NERDtree install
+Plugin 'scrooloose/nerdtree'
+
 " plugin on GitHub repo
 Plugin 'tpope/vim-fugitive'
 " plugin from http://vim-scripts.org/vim/scripts.html
@@ -35,3 +51,13 @@ filetype plugin indent on    " required
 "filetype plugin on
 "
 " see :h vundle for more details or wiki for FAQ
+
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+
