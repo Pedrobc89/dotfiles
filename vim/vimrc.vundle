@@ -16,17 +16,20 @@ Plugin 'ctrlpvim/ctrlp.vim'
 
 " Auto Completion 
 " Can't get this to work
-" Plugin 'Valloric/YouCompleteMe'
+Plugin 'Valloric/YouCompleteMe'
 
 " Snippets
 " Track the engine.
 Plugin 'SirVer/ultisnips'
 
+" Commentary Plugin
+Plugin 'scrooloose/nerdcommenter'
+
 " Snippets are separated from the engine. Add this if you want them:
 Plugin 'honza/vim-snippets'
 
 " Rails
-" Plugin 'vim.rails'
+Plugin 'rails.vim'
 
 " Base 16 color plugin
 Plugin 'chriskempson/base16-vim'
