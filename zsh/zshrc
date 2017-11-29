@@ -59,6 +59,9 @@ plugins=(git rails ruby)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
+#
+# 10ms for key sequences
+KEYTIMEOUT=1
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -86,3 +89,7 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 alias zshconfig="vim ~/.zshrc"
 alias ohmyzsh="vim~/.oh-my-zsh"
+alias cdev="cd ~/Documents/Development/"
+# Source the configured path variables
+source ~/.profile
+
