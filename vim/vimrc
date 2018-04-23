@@ -28,7 +28,7 @@ set expandtab
 set clipboard=unnamed
 
 " Make it obvious where 80 characters is
-set textwidth=0
+set textwidth=80
 set wrapmargin=0
 set colorcolumn=+2
 
@@ -47,6 +47,8 @@ let g:ctrlp_show_hidden = 1 " let control p search hidden files
 runtime macros/matchit.vim
 
 " Mappings
+command Q q
+command W w
 nmap <leader>n :NERDTreeToggle<cr>
 nnoremap <leader>. :CtrlPTag<cr>
 
@@ -56,7 +58,7 @@ source ~/.vimrc_background
 "endif
 
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-" match OverLength /\%81v.\+/
+match OverLength /\%81v.\+/
 
 " JS
 let g:used_javascript_libs = 'jquery,underscore,backbone,react,angularjs'
