@@ -93,6 +93,7 @@ zstyle :omz:plugins:ssh-agent identities id_rsa GA
 alias zshconfig="vim ~/.zshrc"
 alias ohmyzsh="vim~/.oh-my-zsh"
 alias cdev="cd ~/Documents/Development/"
+alias gs='git status'
 # Source the configured path variables
 source ~/.profile
 
