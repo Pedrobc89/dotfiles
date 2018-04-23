@@ -32,12 +32,12 @@ set textwidth=80
 set wrapmargin=0
 set colorcolumn=+2
 
-if has("autocmd") && exists("+omnifunc")
-  autocmd Filetype *
-        \	if &omnifunc == "" |
-        \		setlocal omnifunc=syntaxcomplete#Complete |
-        \	endif
-endif
+" if has("autocmd") && exists("+omnifunc")
+  " autocmd Filetype *
+        " \	if &omnifunc == "" |
+        " \		setlocal omnifunc=syntaxcomplete#Complete |
+        " \	endif
+" endif
 
 " Vundle plugins
 source ~/.dotfiles/vim/vimrc.vundle
