@@ -15,11 +15,9 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
 
 " Auto Completion 
-" Can't get this to work
 Plugin 'Valloric/YouCompleteMe'
 
 " Snippets
-" Track the engine.
 Plugin 'SirVer/ultisnips'
 
 " Commentary Plugin
@@ -46,6 +44,19 @@ Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 " Install L9 and avoid a Naming conflict if you've already installed a
 " different version somewhere else.
 " Plugin 'ascenator/L9', {'name': 'newL9'}
+"
+"Javascript
+Plugin 'othree/javascript-libraries-syntax.vim'
+Plugin 'pangloss/vim-javascript'
+
+" Angular
+Plugin 'burnettk/vim-angular'
+
+"Dash
+Plugin 'rizzatti/dash.vim'
+
+" Syntax
+Plugin 'Syntastic'
 
 " plugin to highlight match tags on html formats
 Plugin 'Valloric/MatchTagAlways'

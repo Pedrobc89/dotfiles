@@ -9,6 +9,7 @@ set showcmd       " display incomplete commands
 set incsearch     " do incremental searching
 set laststatus=2  " Always display the status line
 set autowrite     " Automatically :write before running commands
+set mouse=a       " Enable mouse to move windows
 
 " Set timeout to keys
 set timeoutlen=1000 ttimeoutlen=0
@@ -31,6 +32,13 @@ set textwidth=0
 set wrapmargin=0
 set colorcolumn=+2
 
+if has("autocmd") && exists("+omnifunc")
+  autocmd Filetype *
+        \	if &omnifunc == "" |
+        \		setlocal omnifunc=syntaxcomplete#Complete |
+        \	endif
+endif
+
 " Vundle plugins
 source ~/.dotfiles/vim/vimrc.vundle
 
@@ -40,15 +48,17 @@ runtime macros/matchit.vim
 
 " Mappings
 nmap <leader>n :NERDTreeToggle<cr>
+nnoremap <leader>. :CtrlPTag<cr>
 
 "if filereadable(expand("~/.vimrc_background"))
 let base16colorspace=256
 source ~/.vimrc_background
+"endif
 
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 " match OverLength /\%81v.\+/
-"
-nnoremap <leader>. :CtrlPTag<cr>
 
+" JS
+let g:used_javascript_libs = 'jquery,underscore,backbone,react,angularjs'
+let g:javascript_plugin_jsdoc = 1
 
-"endif
