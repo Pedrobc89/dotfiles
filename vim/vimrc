@@ -32,6 +32,11 @@ set textwidth=80
 set wrapmargin=0
 set colorcolumn=+2
 
+" Smart case search, lowercase is insensitive and UPPERCASE is sensitive
+" Overridewith \c (insensitive) or \C (sensitive)
+set ignorecase
+set smartcase
+
 " if has("autocmd") && exists("+omnifunc")
   " autocmd Filetype *
         " \	if &omnifunc == "" |
