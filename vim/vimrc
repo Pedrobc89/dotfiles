@@ -54,6 +54,8 @@ runtime macros/matchit.vim
 " Mappings
 command Q q
 command W w
+command WQ wq
+command Wq wq
 nmap <leader>n :NERDTreeToggle<cr>
 nnoremap <leader>. :CtrlPTag<cr>
 
@@ -68,4 +70,3 @@ match OverLength /\%81v.\+/
 " JS
 let g:used_javascript_libs = 'jquery,underscore,backbone,react,angularjs'
 let g:javascript_plugin_jsdoc = 1
-
