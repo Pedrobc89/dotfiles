@@ -100,6 +100,7 @@ alias cdev="cd ~/Documents/Development/"
 alias gs='git status'
 alias python="python3"
 alias pip='pip3'
+alias doc='docker-compose'
 # Source the configured path variables
 source ~/.profile
 
