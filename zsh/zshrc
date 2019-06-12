@@ -99,6 +99,7 @@ alias ohmyzsh="vim~/.oh-my-zsh"
 alias cdev="cd ~/Documents/Development/"
 alias gs='git status'
 alias python="python3"
+alias pip='pip3'
 # Source the configured path variables
 source ~/.profile
 

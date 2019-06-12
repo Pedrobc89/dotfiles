@@ -51,13 +51,13 @@ source ~/.dotfiles/vim/vimrc.vundle
 " let g:ctrlp_show_hidden = 1 " let control p search hidden files
 " runtime macros/matchit.vim
 
-" " Mappings
-" command Q q
-" command W w
+" Mappings
+command Q q
+command W w
 " command WQ wq
 " command Wq wq
-" nmap <leader>n :NERDTreeToggle<cr>
-" nnoremap <leader>. :CtrlPTag<cr>
+nmap <leader>n :NERDTreeToggle<cr>
+nnoremap <leader>. :CtrlPTag<cr>
 
 " "if filereadable(expand("~/.vimrc_background"))
 " let base16colorspace=256
