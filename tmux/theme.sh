@@ -2,6 +2,7 @@
 
 tm_color_active=colour11
 tm_color_inactive=colour241
+tm_color_clock=colour20
 tm_color_feature=colour03
 tm_color_music=colour16
 tm_active_border_color=colour11
@@ -70,7 +71,7 @@ set-window-option -g clock-mode-colour $tm_color_active
 #tm_tunes="#[fg=$tm_color_music]#(osascript -l JavaScript ~/.dotfiles/applescripts/tunes.js)"
 #tm_battery="#(~/.dotfiles/bin/battery_indicator.sh)"
 
-tm_date="#[fg=$tm_color_inactive] %R %d %b"
+tm_date="#[fg=$tm_color_clock] %R %d %b"
 tm_host="#[fg=$tm_color_feature,bold]#h"
 tm_session_name="[#[fg=$tm_color_feature,bold]#S]"
 
