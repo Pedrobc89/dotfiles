@@ -1,0 +1,2 @@
+echo "Enviroment setup"
+
