@@ -101,6 +101,8 @@ alias gs='git status'
 alias python="python3"
 alias pip='pip3'
 alias doc='docker-compose'
+alias api='doc exec web bash'
+alias api_log='doc logs -f web'
 # Source the configured path variables
 source ~/.profile
 
