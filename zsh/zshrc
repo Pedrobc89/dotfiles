@@ -58,8 +58,7 @@ DISABLE_AUTO_TITLE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git rails ruby python tmux)
-
+plugins=(git rails ruby python tmux django docker npm osx celery jira)
 export ZSH_TMUX_AUTOSTART=true
 
 source $ZSH/oh-my-zsh.sh
@@ -72,7 +71,7 @@ KEYTIMEOUT=1
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -94,8 +93,8 @@ zstyle :omz:plugins:ssh-agent identities id_rsa GA
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-alias zshconfig="vim ~/.zshrc"
-alias ohmyzsh="vim~/.oh-my-zsh"
+alias zshconfig="vim ~/.dotfiles/zsh"
+alias ohmyzsh="vim ~/.oh-my-zsh"
 alias cdev="cd ~/Documents/Development/"
 alias gs='git status'
 alias python="python3"
@@ -103,9 +102,17 @@ alias pip='pip3'
 alias doc='docker-compose'
 alias api='doc exec web bash'
 alias api_log='doc logs -f web'
+alias vimconfig='vim ~/.dotfiles/vim'
+alias tmuxconfig='vim ~/.dotfiles/tmux'
+alias rapi='docker restart api_zapay'
+alias :q='exit' 
+
+eval $(thefuck --alias)
 # Source the configured path variables
 source ~/.profile
 
+# Jira plugin
+export JIRA_NAME=Pedro
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 

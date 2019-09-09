@@ -37,18 +37,12 @@ set colorcolumn=+2
 set ignorecase
 set smartcase
 
-" if has("autocmd") && exists("+omnifunc")
-  " autocmd Filetype *
-        " \	if &omnifunc == "" |
-        " \		setlocal omnifunc=syntaxcomplete#Complete |
-        " \	endif
-" endif
+" Status Line configs
+set laststatus=2
 
 " Vundle plugins
 source ~/.dotfiles/vim/vimrc.vundle
 
-" " Put your non-Plugin stuff after this line
-" let g:ctrlp_show_hidden = 1 " let control p search hidden files
 " runtime macros/matchit.vim
 
 " Mappings
@@ -56,17 +50,7 @@ command Q q
 command W w
 " command WQ wq
 " command Wq wq
+
 nmap <leader>n :NERDTreeToggle<cr>
 nnoremap <leader>. :CtrlPTag<cr>
 
-" "if filereadable(expand("~/.vimrc_background"))
-" let base16colorspace=256
-" source ~/.vimrc_background
-" "endif
-
-" highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-" match OverLength /\%81v.\+/
-
-" " JS
-" let g:used_javascript_libs = 'jquery,underscore,backbone,react,angularjs'
-" let g:javascript_plugin_jsdoc = 1

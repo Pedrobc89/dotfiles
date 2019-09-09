@@ -11,6 +11,7 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
+
 " Fuzzy file finder system
 Plugin 'ctrlpvim/ctrlp.vim'
 
@@ -32,13 +33,18 @@ Plugin 'rails.vim'
 " Base 16 color plugin
 Plugin 'chriskempson/base16-vim'
 
+" Python indent
+Plugin 'Vimjas/vim-python-pep8-indent'
+
 " NERDtree install
 Plugin 'scrooloose/nerdtree'
 
 " plugin on GitHub repo
 Plugin 'tpope/vim-fugitive'
+
 " plugin from http://vim-scripts.org/vim/scripts.html
 Plugin 'L9'
+
 " Git plugin not hosted on GitHub
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 
@@ -52,14 +58,21 @@ Plugin 'burnettk/vim-angular'
 " TypeScript
 Plugin 'leafgarland/typescript-vim'
 
-"Dash
+" Dash
 Plugin 'rizzatti/dash.vim'
+
+" Vim Surround by tpope
+Plugin 'surround.vim'
 
 " Syntax
 Plugin 'Syntastic'
 
 " plugin to highlight match tags on html formats
 Plugin 'Valloric/MatchTagAlways'
+
+" Settingup React dev enviroment
+Plugin 'mxw/vim-jsx'
+Plugin 'mattn/emmet-vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -69,6 +82,11 @@ filetype plugin indent on    " required
 "
 " see :h vundle for more details or wiki for FAQ
 
+" let control p search hidden files"
+let g:ctrlp_show_hidden = 1 
+" Ignore custom folders
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
@@ -77,12 +95,28 @@ let g:UltiSnipsJumpBackwardTrigger="<S-tab>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
+" Indentation settings
+let g:python_pep8_indent_multiline_string = 0
+let g:python_pep8_indent_hang_closing = 0
+
 " Change default ycm keys
 let g:ycm_key_list_select_completion = ['<C-j>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-k>', '<Up>']
-let g:ycm_key_list_accept_completion = ['<C-y>']
+let g:ycm_key_list_accept_completion = ['<C-y>', '<Return>']
 
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
 " Use compact syntax for prettified multi-line comments
 let g:NERDCompactSexyComs = 1
+
+let base16colorspace=256 
+colorscheme base16-monokai
+set termguicolors
+
+let g:user_emmet_leader_key='<Tab>'
+let g:user_emmet_settings = {
+      \  'javascript.jsx' : {
+      \      'extends' : 'jsx',
+      \  },
+      \}
+
