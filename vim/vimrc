@@ -31,6 +31,7 @@ set clipboard=unnamed
 set textwidth=80
 set wrapmargin=0
 set colorcolumn=+2
+set nowrap
 
 " Smart case search, lowercase is insensitive and UPPERCASE is sensitive
 " Overridewith \c (insensitive) or \C (sensitive)
@@ -47,10 +48,28 @@ source ~/.dotfiles/vim/vimrc.vundle
 
 " Mappings
 command Q q
+command Qa qa
+command QA qa
 command W w
+command Wa wa
+command WA wa
+command WQA wqa
+command Wqa wqa
+command WQa wqa
 " command WQ wq
 " command Wq wq
 
+map <D-S> :source ~/.vimrc
+" map <D-S> <Esc>:w<cr>
+nmap <F12> <C-]>
 nmap <leader>n :NERDTreeToggle<cr>
 nnoremap <leader>. :CtrlPTag<cr>
+nnoremap <leader>f :PyFlakeAuto<cr>
+nnoremap <D-F> :grep
+noremap <F3> :set hlsearch!<cr>
 
+silent! helptags ALL
+
+" Enable folding
+set foldmethod=indent
+set foldlevel=99

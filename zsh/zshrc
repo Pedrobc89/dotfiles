@@ -93,19 +93,22 @@ zstyle :omz:plugins:ssh-agent identities id_rsa GA
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-alias zshconfig="vim ~/.dotfiles/zsh"
+alias zshconfig="vim ~/.dotfiles/zsh/zshrc"
 alias ohmyzsh="vim ~/.oh-my-zsh"
 alias cdev="cd ~/Documents/Development/"
 alias gs='git status'
 alias python="python3"
 alias pip='pip3'
 alias doc='docker-compose'
+alias docst='docker-compose up -d'
 alias api='doc exec web bash'
 alias api_log='doc logs -f web'
-alias vimconfig='vim ~/.dotfiles/vim'
+alias vimconfig='cd ~/.dotfiles/vim ; vim -O vimrc vimrc.vundle'
 alias tmuxconfig='vim ~/.dotfiles/tmux'
-alias rapi='docker restart api_zapay'
-alias :q='exit' 
+alias rappi='docker restart api_zapay'
+alias :q='exit'
+alias cdapi='cd ~/Documents/Development/Zapay/repos/api'
+alias cdwarden='cd ~/Documents/Development/Zapay/repos/warden'
 
 eval $(thefuck --alias)
 # Source the configured path variables
@@ -115,4 +118,4 @@ source ~/.profile
 export JIRA_NAME=Pedro
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
+export PATH="/usr/local/opt/node@10/bin:$PATH"

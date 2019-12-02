@@ -15,8 +15,17 @@ Plugin 'VundleVim/Vundle.vim'
 " Fuzzy file finder system
 Plugin 'ctrlpvim/ctrlp.vim'
 
-" Auto Completion 
+" Search inside files
+Plugin 'mileszs/ack.vim'
+
+" SuperTab for youcompleteme and ultisnips together
+Plugin  'ervandew/supertab'
+
+" Auto Completion
 Plugin 'Valloric/YouCompleteMe'
+
+" Autotag
+Plugin 'craigemery/vim-autotag'
 
 " Snippets
 Plugin 'SirVer/ultisnips'
@@ -33,7 +42,8 @@ Plugin 'rails.vim'
 " Base 16 color plugin
 Plugin 'chriskempson/base16-vim'
 
-" Python indent
+" Python
+Plugin 'python.vim'
 Plugin 'Vimjas/vim-python-pep8-indent'
 
 " NERDtree install
@@ -52,9 +62,6 @@ Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plugin 'othree/javascript-libraries-syntax.vim'
 Plugin 'pangloss/vim-javascript'
 
-" Angular
-Plugin 'burnettk/vim-angular'
-
 " TypeScript
 Plugin 'leafgarland/typescript-vim'
 
@@ -65,14 +72,32 @@ Plugin 'rizzatti/dash.vim'
 Plugin 'surround.vim'
 
 " Syntax
-Plugin 'Syntastic'
+" Plugin 'Syntastic'
+Plugin 'dense-analysis/ale'
+Plugin 'andviro/flake8-vim'
+Plugin 'othree/yajs.vim'
+
+" GraphQL
+Plugin 'jparise/vim-graphql'
 
 " plugin to highlight match tags on html formats
 Plugin 'Valloric/MatchTagAlways'
+" Plugin 'townk/vim-autoclose'
 
 " Settingup React dev enviroment
-Plugin 'mxw/vim-jsx'
-Plugin 'mattn/emmet-vim'
+Plugin 'maxmellon/vim-jsx-pretty'
+Plugin 'greg-js/vim-react-es6-snippets'
+
+" StatusBar
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+
+" Code folding
+Plugin 'tmhedberg/SimpylFold'
+
+"Auto close surroundings
+Plugin 'jiangmiao/auto-pairs'
+
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -83,9 +108,14 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 
 " let control p search hidden files"
-let g:ctrlp_show_hidden = 1 
+let g:ctrlp_show_hidden = 1
 " Ignore custom folders
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+let g:ctrlp_user_command = 'fd --type f --color=never "" %s'
+let g:ctrlp_use_caching = 0
+
+" Ack settings
+nnoremap <Leader>a :Ack!<Space>
 
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -95,9 +125,6 @@ let g:UltiSnipsJumpBackwardTrigger="<S-tab>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
-" Indentation settings
-let g:python_pep8_indent_multiline_string = 0
-let g:python_pep8_indent_hang_closing = 0
 
 " Change default ycm keys
 let g:ycm_key_list_select_completion = ['<C-j>', '<Down>']
@@ -108,15 +135,47 @@ let g:ycm_key_list_accept_completion = ['<C-y>', '<Return>']
 let g:NERDSpaceDelims = 1
 " Use compact syntax for prettified multi-line comments
 let g:NERDCompactSexyComs = 1
+" Ignore files
+set wildignore+=*.pyc,*.o,*.obj,*.svn,*.swp,*.class,*.hg,*.DS_Store,*.min.*
+let NERDTreeRespectWildIgnore=1
+" Open NERDtree autmatically
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
-let base16colorspace=256 
+
+let base16colorspace=256
 colorscheme base16-monokai
 set termguicolors
 
-let g:user_emmet_leader_key='<Tab>'
-let g:user_emmet_settings = {
-      \  'javascript.jsx' : {
-      \      'extends' : 'jsx',
-      \  },
+let g:autotagTagsFile="tags"
+
+let g:airline_theme='base16_monokai'
+
+" Indentation settings
+let g:python_pep8_indent_multiline_string = 0
+let g:python_pep8_indent_hang_closing = 0
+
+" Syntastic recommended settings
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
+
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
+" let g:syntastic_python_checkers=['flake8 --ignore=E225,E501,E302,E261,E262,E701,E241,E126,E127,E128,W801','python3']
+
+
+let g:ale_fix_on_save = 1
+let g:ale_fixers = {
+      \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+      \'javascript': ['prettier', 'eslint'],
+      \'python': ['autopep8', 'reorder-python-imports', 'yapf']
       \}
 
+let g:SimpylFold_docstring_preview = 1
+
+
+" Autotags
+let g:autotagCtagsCmd = 'ctags -R --exclude=.git --exclude=node_modules --exclude=test'
