@@ -25,48 +25,49 @@ Plugin  'ervandew/supertab'
 Plugin 'Valloric/YouCompleteMe'
 
 " Autotag
-Plugin 'craigemery/vim-autotag'
+" Plugin 'craigemery/vim-autotag'
 
 " Snippets
-Plugin 'SirVer/ultisnips'
+" Plugin 'SirVer/ultisnips'
 
 " Commentary Plugin
 Plugin 'scrooloose/nerdcommenter'
 
 " Snippets are separated from the engine. Add this if you want them:
-Plugin 'honza/vim-snippets'
+" Plugin 'honza/vim-snippets'
 
 " Rails
-Plugin 'rails.vim'
+" Plugin 'rails.vim'
 
 " Base 16 color plugin
 Plugin 'chriskempson/base16-vim'
 
 " Python
 Plugin 'python.vim'
-Plugin 'Vimjas/vim-python-pep8-indent'
+" Plugin 'Vimjas/vim-python-pep8-indent'
+Plugin 'vim-python/python-syntax'
 
-" NERDtree install
+" NERDtree tree like file browser
 Plugin 'scrooloose/nerdtree'
 
-" plugin on GitHub repo
+" Git commands direct from vim
 Plugin 'tpope/vim-fugitive'
 
 " plugin from http://vim-scripts.org/vim/scripts.html
-Plugin 'L9'
+" Plugin 'L9'
 
 " Git plugin not hosted on GitHub
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 
 "Javascript
-Plugin 'othree/javascript-libraries-syntax.vim'
-Plugin 'pangloss/vim-javascript'
+" Plugin 'othree/javascript-libraries-syntax.vim'
+" Plugin 'pangloss/vim-javascript'
 
 " TypeScript
-Plugin 'leafgarland/typescript-vim'
+" Plugin 'leafgarland/typescript-vim'
 
 " Dash
-Plugin 'rizzatti/dash.vim'
+" Plugin 'rizzatti/dash.vim'
 
 " Vim Surround by tpope
 Plugin 'surround.vim'
@@ -78,10 +79,10 @@ Plugin 'andviro/flake8-vim'
 Plugin 'othree/yajs.vim'
 
 " GraphQL
-Plugin 'jparise/vim-graphql'
+" Plugin 'jparise/vim-graphql'
 
 " plugin to highlight match tags on html formats
-Plugin 'Valloric/MatchTagAlways'
+" Plugin 'Valloric/MatchTagAlways'
 " Plugin 'townk/vim-autoclose'
 
 " Settingup React dev enviroment
@@ -89,15 +90,17 @@ Plugin 'maxmellon/vim-jsx-pretty'
 Plugin 'greg-js/vim-react-es6-snippets'
 
 " StatusBar
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+" Plugin 'vim-airline/vim-airline'
+" Plugin 'vim-airline/vim-airline-themes'
 
 " Code folding
-Plugin 'tmhedberg/SimpylFold'
+" Plugin 'tmhedberg/SimpylFold'
 
-"Auto close surroundings
-Plugin 'jiangmiao/auto-pairs'
+" CSV file support
+" Plugin 'chrisbra/csv.vim'
 
+" Vim tmux navigator
+Plugin 'christoomey/vim-tmux-navigator'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -141,19 +144,24 @@ let NERDTreeRespectWildIgnore=1
 " Open NERDtree autmatically
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-
+"Unset conflicted mappings
+let g:NERDTreeMapJumpNextSibling = ''
+let g:NERDTreeMapJumpPrevSibling = ''
 
 let base16colorspace=256
-colorscheme base16-monokai
+colorscheme $BASE16_THEME
 set termguicolors
+hi Visual  guifg=#000000 guibg=#FFFFFF gui=none
 
 let g:autotagTagsFile="tags"
 
-let g:airline_theme='base16_monokai'
+" let g:airline_theme='base16_monokai'
+" let g:airline#extensions#tabline#enabled = 1
 
 " Indentation settings
 let g:python_pep8_indent_multiline_string = 0
 let g:python_pep8_indent_hang_closing = 0
+let g:python_highlight_all = 1
 
 " Syntastic recommended settings
 " set statusline+=%#warningmsg#
@@ -170,12 +178,24 @@ let g:ale_fix_on_save = 1
 let g:ale_python_pylint_options = '--load-plugins pylint_django'
 let g:ale_fixers = {
       \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-      \'javascript': ['prettier', 'eslint'],
       \'python': ['autopep8', 'reorder-python-imports', 'yapf']
       \}
 
+"      \'javascript': ['prettier', 'eslint'],
 let g:SimpylFold_docstring_preview = 1
 
 
 " Autotags
 let g:autotagCtagsCmd = 'ctags -R --exclude=.git --exclude=node_modules --exclude=test'
+
+" Fugitive remap to 3way merge
+nnoremap <leader>< :diffget //2<CR>
+nnoremap <leader>> :diffget //3<CR>
+
+let g:tmux_navigator_no_mappings = 1
+
+nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
+nnoremap <silent> <C-\> :TmuxNavigatePrevious<cr>

@@ -58,7 +58,7 @@ DISABLE_AUTO_TITLE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git rails ruby python tmux django docker npm osx celery jira)
+plugins=(z git rails ruby python tmux django docker docker-compose npm osx celery jira zsh-autosuggestions)
 export ZSH_TMUX_AUTOSTART=true
 
 source $ZSH/oh-my-zsh.sh
@@ -100,8 +100,8 @@ alias gs='git status'
 alias python="python3"
 alias pip='pip3'
 alias doc='docker-compose'
-alias docst='docker-compose up -d'
 alias api='doc exec web bash'
+alias shell='doc exec web python manage.py shell'
 alias api_log='doc logs -f web'
 alias vimconfig='cd ~/.dotfiles/vim ; vim -O vimrc vimrc.vundle'
 alias tmuxconfig='vim ~/.dotfiles/tmux'
@@ -109,6 +109,8 @@ alias rappi='docker restart api_zapay'
 alias :q='exit'
 alias cdapi='cd ~/Documents/Development/Zapay/repos/api'
 alias cdwarden='cd ~/Documents/Development/Zapay/repos/warden'
+alias cdzapay='cd ~/Documents/Development/Zapay'
+alias cdfront='cd ~/Documents/Development/Zapay/repos/ze-commerce/e-commerce'
 
 eval $(thefuck --alias)
 # Source the configured path variables
@@ -119,3 +121,5 @@ export JIRA_NAME=Pedro
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 export PATH="/usr/local/opt/node@10/bin:$PATH"
+export PATH="/usr/local/opt/python@3.8/bin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
