@@ -70,6 +70,7 @@ nnoremap <leader>. :CtrlPTag<cr>
 nnoremap <leader>f :PyFlakeAuto<cr>
 nnoremap <D-F> :grep
 noremap <F3> :set hlsearch!<cr>
+nmap <leader>J :%!python -m json.tool<CR>
 
 silent! helptags ALL
 

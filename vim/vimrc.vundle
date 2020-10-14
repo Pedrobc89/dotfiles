@@ -4,6 +4,10 @@
 " :PluginSearch foo - searches for foo; append `!` to refresh local cache
 " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
 "" set the runtime path to include Vundle and initialize
+
+" Addresses a bug with autotag and python3
+let g:autotagStartMethod='fork'
+
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
@@ -24,11 +28,12 @@ Plugin  'ervandew/supertab'
 " Auto Completion
 Plugin 'Valloric/YouCompleteMe'
 
-" Autotag
-" Plugin 'craigemery/vim-autotag'
+" Tags
+Plugin 'craigemery/vim-autotag'
+Plugin 'majutsushi/tagbar'
 
 " Snippets
-" Plugin 'SirVer/ultisnips'
+Plugin 'SirVer/ultisnips'
 
 " Commentary Plugin
 Plugin 'scrooloose/nerdcommenter'
@@ -54,7 +59,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-fugitive'
 
 " plugin from http://vim-scripts.org/vim/scripts.html
-" Plugin 'L9'
+Plugin 'L9'
 
 " Git plugin not hosted on GitHub
 " Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
@@ -67,13 +72,13 @@ Plugin 'tpope/vim-fugitive'
 " Plugin 'leafgarland/typescript-vim'
 
 " Dash
-" Plugin 'rizzatti/dash.vim'
+Plugin 'rizzatti/dash.vim'
 
 " Vim Surround by tpope
 Plugin 'surround.vim'
 
 " Syntax
-" Plugin 'Syntastic'
+Plugin 'Syntastic'
 Plugin 'dense-analysis/ale'
 Plugin 'andviro/flake8-vim'
 Plugin 'othree/yajs.vim'
@@ -87,17 +92,14 @@ Plugin 'othree/yajs.vim'
 
 " Settingup React dev enviroment
 Plugin 'maxmellon/vim-jsx-pretty'
-Plugin 'greg-js/vim-react-es6-snippets'
+" Plugin 'greg-js/vim-react-es6-snippets'
 
 " StatusBar
-" Plugin 'vim-airline/vim-airline'
-" Plugin 'vim-airline/vim-airline-themes'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 
 " Code folding
 " Plugin 'tmhedberg/SimpylFold'
-
-" CSV file support
-" Plugin 'chrisbra/csv.vim'
 
 " Vim tmux navigator
 Plugin 'christoomey/vim-tmux-navigator'
@@ -116,6 +118,16 @@ let g:ctrlp_show_hidden = 1
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 let g:ctrlp_user_command = 'fd --type f --color=never "" %s'
 let g:ctrlp_use_caching = 0
+let g:ctrlp_abbrev = {
+  \ 'gmode': 'i',
+  \ 'abbrevs': [
+    \ {
+      \ 'pattern': ' ',
+      \ 'expanded': '',
+      \ 'mode': 'pfrz',
+    \ },
+    \ ]
+  \ }
 
 " Ack settings
 nnoremap <Leader>a :Ack!<Space>
@@ -157,10 +169,10 @@ endif
 set termguicolors
 hi Visual  guifg=#000000 guibg=#FFFFFF gui=none
 
-let g:autotagTagsFile="tags"
-
-" let g:airline_theme='base16_monokai'
-" let g:airline#extensions#tabline#enabled = 1
+" Airline preferences
+let g:airline_theme='base16_monokai'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_extensions = []
 
 " Indentation settings
 let g:python_pep8_indent_multiline_string = 0
@@ -168,15 +180,15 @@ let g:python_pep8_indent_hang_closing = 0
 let g:python_highlight_all = 1
 
 " Syntastic recommended settings
-" set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
-" let g:syntastic_check_on_open = 1
-" let g:syntastic_check_on_wq = 0
-" let g:syntastic_python_checkers=['flake8 --ignore=E225,E501,E302,E261,E262,E701,E241,E126,E127,E128,W801','python3']
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_python_checkers=['flake8 --ignore=E225,E501,E302,E261,E262,E701,E241,E126,E127,E128,W801','python3']
 
 let g:ale_fix_on_save = 1
 let g:ale_python_pylint_options = '--load-plugins pylint_django'
@@ -189,13 +201,16 @@ let g:ale_fixers = {
 let g:SimpylFold_docstring_preview = 1
 
 
-" Autotags
+" Tags
+nmap <F8> :TagbarToggle<CR>
+let g:autotagTagsFile="tags"
 let g:autotagCtagsCmd = 'ctags -R --exclude=.git --exclude=node_modules --exclude=test'
 
 " Fugitive remap to 3way merge
 nnoremap <leader>< :diffget //2<CR>
 nnoremap <leader>> :diffget //3<CR>
 
+" Vim + Tmux navigation
 let g:tmux_navigator_no_mappings = 1
 
 nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
