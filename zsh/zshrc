@@ -59,7 +59,7 @@ DISABLE_AUTO_TITLE="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(z git python tmux django docker docker-compose \
-  npm osx celery jira zsh-autosuggestions iterm2)
+  npm celery jira npm yarn)
 export ZSH_TMUX_AUTOSTART=true
 
 source $ZSH/oh-my-zsh.sh
@@ -75,11 +75,7 @@ KEYTIMEOUT=1
 export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+export EDITOR='vim'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -113,9 +109,7 @@ alias cdwarden='cd ~/Documents/Development/Zapay/repos/warden'
 alias cdzapay='cd ~/Documents/Development/Zapay'
 alias cdfront='cd ~/Documents/Development/Zapay/repos/ze-commerce/e-commerce'
 alias cdmovva='cd ~/Documents/Development/Movva/'
-alias brew_info= 'brew update; brew outdated; brew cask outdated'
 
-eval $(thefuck --alias)
 # Source the configured path variables
 source ~/.profile
 
@@ -132,3 +126,23 @@ if [ -f '/Users/pato/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/pato/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/pato/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+
+# Enables clipbord sharing why it works still a mistery!!
+export DISPLAY=:0.0
+
+# mcd core components
+REPO=~/Documents/Development/SingularityNET/repos/techlabs
+OUTPUT_AUDIO_DEV='HDA Intel PCH'
+INPUT_AUDIO_DEV='HDA Intel PCH'
+function playbackdevice() { aplay -l | grep ${OUTPUT_AUDIO_DEV} | awk '{print $2}' | tr -d ': ' | head -n 1 | xargs echo; }
+function capturedevice() { arecord -l | grep ${INPUT_AUDIO_DEV} | awk '{print $2}' | tr -d ': ' | head -n 1 | xargs echo; }
+alias jackstart="cd $REPO && ./shake audio jack start --capture_device=hw:$(capturedevice) --playback_device=hw:$(playbackdevice)"
+alias jackstop="cd $REPO && ./shake audio jack stop; sleep 1; pkill -f jackd; cd -"
+alias abmock="jackstop; sleep 1; jackstart; sleep 1; cd $REPO && ./shake audio ab mock --jack --mqtt=true"
+alias audioservice="cd $REPO && ./shake audio service"
+alias observerterminal="cd $REPO && ./shake va observer terminal"
+alias observerinjector="cd $REPO && ./shake va observer injector"
+alias asrservice="cd $REPO && ./shake va services asr --use_audio_service --record_session_logs --echo_canceller='webrtc'"
+alias ttsservice="cd $REPO && ./shake va services tts --use_audio_service"
+alias chatmanagerservice="cd $REPO && ./shake va services cms --all_day_breakfast"
+alias mqttprint="mosquitto_sub -v -t 'mcd_dev/+/+/AsrService/AsrSpeechDecoded' -t 'mcd_dev/+/+/TtsService/#' -t 'mcd_dev/+/+/ChatService/#' -t 'mcd_dev/+/+/LogCollector/#' -t 'mcd_dev/+/Bre/Evd/#' -t 'hme/#' -t 'mcd_dev/+/+/DialogState/#' -t 'evd/#'"
