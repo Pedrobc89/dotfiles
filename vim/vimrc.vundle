@@ -5,9 +5,6 @@
 " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
 "" set the runtime path to include Vundle and initialize
 
-" Addresses a bug with autotag and python3
-let g:autotagStartMethod='fork'
-
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
@@ -25,24 +22,20 @@ Plugin 'mileszs/ack.vim'
 " SuperTab for youcompleteme and ultisnips together
 Plugin  'ervandew/supertab'
 
-" Auto Completion
-Plugin 'Valloric/YouCompleteMe'
-
 " Tags
-" Plugin 'craigemery/vim-autotag'
+Plugin 'ludovicchabant/vim-gutentags'
 Plugin 'majutsushi/tagbar'
 
 " Snippets
 Plugin 'SirVer/ultisnips'
+" Snippets are separated from the engine. Add this if you want them:
+Plugin 'honza/vim-snippets'
 
 " Commentary Plugin
 Plugin 'scrooloose/nerdcommenter'
 
-" Snippets are separated from the engine. Add this if you want them:
-Plugin 'honza/vim-snippets'
-
-" Rails
-" Plugin 'rails.vim'
+" NERDtree tree like file browser
+Plugin 'scrooloose/nerdtree'
 
 " Base 16 color plugin
 Plugin 'chriskempson/base16-vim'
@@ -52,54 +45,42 @@ Plugin 'python.vim'
 Plugin 'Vimjas/vim-python-pep8-indent'
 Plugin 'vim-python/python-syntax'
 
-" NERDtree tree like file browser
-Plugin 'scrooloose/nerdtree'
-
 " Git commands direct from vim
 Plugin 'tpope/vim-fugitive'
 
 " plugin from http://vim-scripts.org/vim/scripts.html
 Plugin 'L9'
 
-" Git plugin not hosted on GitHub
-" Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-
-"Javascript
-" Plugin 'othree/javascript-libraries-syntax.vim'
-" Plugin 'pangloss/vim-javascript'
-
-" TypeScript
-" Plugin 'leafgarland/typescript-vim'
-
-" Dash
-Plugin 'rizzatti/dash.vim'
-
 " Vim Surround by tpope
 Plugin 'surround.vim'
 
-" Syntax
-Plugin 'Syntastic'
+" LSP - Language Server Protocol
+Plugin 'prabirshrestha/vim-lsp'
+
+" Asyncomplete - autocomplete solution
+Plugin 'prabirshrestha/asyncomplete.vim'
+Plugin 'prabirshrestha/asyncomplete-lsp.vim'
+
+" Asynchronous Lint Engine
 Plugin 'dense-analysis/ale'
-" Plugin 'andviro/flake8-vim'
-" Plugin 'othree/yajs.vim'
 
-" GraphQL
-" Plugin 'jparise/vim-graphql'
+" ALE - LSP integration
+Plugin 'rhysd/vim-lsp-ale'
+Plugin 'mattn/vim-lsp-settings'
 
-" plugin to highlight match tags on html formats
-" Plugin 'Valloric/MatchTagAlways'
-" Plugin 'townk/vim-autoclose'
+" Asyncomplete sources
+Plugin 'prabirshrestha/asyncomplete-ultisnips.vim'
+Plugin 'prabirshrestha/asyncomplete-tags.vim'
+Plugin 'andreypopp/asyncomplete-ale.vim'
+Plugin 'htlsne/asyncomplete-look'
+Plugin 'laixintao/asyncomplete-gitcommit'
 
 " Settingup React dev enviroment
 Plugin 'maxmellon/vim-jsx-pretty'
-" Plugin 'greg-js/vim-react-es6-snippets'
 
 " StatusBar
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-
-" Code folding
-Plugin 'tmhedberg/SimpylFold'
 
 " Vim tmux navigator
 Plugin 'christoomey/vim-tmux-navigator'
@@ -107,19 +88,20 @@ Plugin 'christoomey/vim-tmux-navigator'
 " Multicursor
 Plugin 'mg979/vim-visual-multi'
 
+"
+Plugin 'fcpg/vim-osc52'
+
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" see :h vundle for more details or wiki for FAQ
 
 " let control p search hidden files"
 let g:ctrlp_show_hidden = 1
 " Ignore custom folders
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 " let g:ctrlp_user_command = 'fd --type f --color=never "" %s'
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 let g:ctrlp_use_caching = 1
 let g:ctrlp_abbrev = {
   \ 'gmode': 'i',
@@ -136,20 +118,12 @@ let g:ctrlp_abbrev = {
 nnoremap <Leader>a :Ack!<Space>
 
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<tab>"
+" let g:UltiSnipsExpandTrigger="<c-e>"
+let g:UltiSnipsExpandTrigger="<c-e>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<S-tab>"
 let g:UltiSnipsListSnippets="<F4>"
-
-
-" If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
-
-
-" Change default ycm keys
-let g:ycm_key_list_select_completion = ['<C-j>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-k>', '<Up>']
-let g:ycm_key_list_accept_completion = ['<C-y>', '<Return>']
 
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
@@ -159,8 +133,8 @@ let g:NERDCompactSexyComs = 1
 set wildignore+=*.pyc,*.o,*.obj,*.svn,*.swp,*.class,*.hg,*.DS_Store,*.min.*
 let NERDTreeRespectWildIgnore=1
 " Open NERDtree autmatically
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 "Unset conflicted mappings
 let g:NERDTreeMapJumpNextSibling = ''
 let g:NERDTreeMapJumpPrevSibling = ''
@@ -175,38 +149,72 @@ endif
 let g:airline_theme='base16_monokai'
 let g:airline#extensions#tabline#enabled = 1
 
-" Indentation settings
-let g:python_pep8_indent_multiline_string = 0
-let g:python_pep8_indent_hang_closing = 0
+" Python highllight self word
 let g:python_highlight_all = 1
 
-" Syntastic recommended settings
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+" Asyncomplete Settings
+let g:asyncomplete_remove_duplicates=1
+set completeopt=menuone,noinsert,noselect,preview
+" inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr> pumvisible() ? asyncomplete#close_popup() : "\<cr>"
+inoremap <expr> <tab> pumvisible() ? asyncomplete#close_popup() : "\<tab>"
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_python_checkers=['','python3']
-" let g:syntastic_python_checkers=['flake8 --ignore=E225,E501,E302,E261,E262,E701,E241,E126,E127,E128,W801','python3']
+inoremap <C-k> <UP>
+inoremap <C-j> <Down>
+inoremap <C-h> <Right>
+inoremap <C-l> <Left>
 
+" Asycomplete Sources
+" ALE
+au User asyncomplete_setup call asyncomplete#ale#register_source({
+    \ 'name': 'reason',
+    \ 'linter': 'flow',
+    \ })
+" UltiSnips
+call asyncomplete#register_source(asyncomplete#sources#ultisnips#get_source_options({
+      \ 'name': 'ultisnips',
+      \ 'allowlist': ['*'],
+      \ 'completor': function('asyncomplete#sources#ultisnips#completor'),
+      \ }))
+" Dictionary
+au User asyncomplete_setup call asyncomplete#register_source({
+    \ 'name': 'look',
+    \ 'allowlist': ['text', 'markdown'],
+    \ 'completor': function('asyncomplete#sources#look#completor'),
+    \ })
+" Gicommit
+au User asyncomplete_setup call asyncomplete#register_source({
+    \ 'name': 'gitcommit',
+    \ 'whitelist': ['gitcommit'],
+    \ 'priority': 10,
+    \ 'completor': function('asyncomplete#sources#gitcommit#completor')
+    \ })
+" Tags
+au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#tags#get_source_options({
+    \ 'name': 'tags',
+    \ 'allowlist': ['c'],
+    \ 'completor': function('asyncomplete#sources#tags#completor'),
+    \ 'config': {
+    \    'max_file_size': 50000000,
+    \  },
+    \ }))
+
+" ALE Settings
 let g:ale_fix_on_save = 1
-let g:ale_python_pylint_options = ''
+let g:ale_linters = {
+      \ 'python': ['pylint', 'pyls', 'my-py', 'vim-lsp'],
+      \ }
+let g:ale_python_pylint_options = '--load-plugins pylint_django --disable=django-not-available'
 let g:ale_fixers = {
       \   '*': ['remove_trailing_lines', 'trim_whitespace'],
       \'python': ['autopep8', 'reorder-python-imports', 'yapf']
       \}
 
 "      \'javascript': ['prettier', 'eslint'],
-let g:SimpylFold_docstring_preview = 1
-
 
 " Tags
 nmap <F8> :TagbarToggle<cr>
-let g:autotagTagsFile="tags"
-let g:autotagCtagsCmd = 'ctags -R --exclude=.git --exclude=node_modules --exclude=test'
 
 " Fugitive remap to 3way merge
 nnoremap <leader>< :diffget //2<cr>
@@ -220,3 +228,21 @@ nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <C-\> :TmuxNavigatePrevious<cr>
+
+function! HighlightRepeats() range
+  let lineCounts = {}
+  let lineNum = a:firstline
+  while lineNum <= a:lastline
+    let lineText = getline(lineNum)
+    if lineText != ""
+      let lineCounts[lineText] = (has_key(lineCounts, lineText) ? lineCounts[lineText] : 0) + 1
+    endif
+    let lineNum = lineNum + 1
+  endwhile
+  exe 'syn clear Repeat'
+  for lineText in keys(lineCounts)
+    if lineCounts[lineText] >= 2
+      exe 'syn match Repeat "^' . escape(lineText, '".\^$*[]') . '$"'
+    endif
+  endfor
+endfunction

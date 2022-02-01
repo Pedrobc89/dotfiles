@@ -11,6 +11,8 @@ set laststatus=2  " Always display the status line
 set autowrite     " Automatically :write before running commands
 set mouse=a       " Enable mouse to move windows
 
+" Failed attempt to yank to tmux
+" autocmd TextYankPost * call system("tc")
 
 " Set timeout to keys
 set timeoutlen=1000 ttimeoutlen=0
@@ -34,6 +36,7 @@ set splitright
 " set clipboard=unnamed
 " UBUNTU needs it to be unamedplus
 set clipboard=unnamedplus
+" set clipboard+=clipboard
 
 " Make it obvious where 80 characters is
 set textwidth=80
@@ -73,12 +76,12 @@ map <leader><space> :source ~/.vimrc<cr>
 nmap <F12> <C-]>
 nmap <leader>n :NERDTreeToggle<cr>
 nmap <leader>r :NERDTreeFind<cr>
-nnoremap <leader>. :CtrlPTag<cr>
+nnoremap <leader>t :CtrlPTag<cr>
 nnoremap <leader>f :PyFlakeAuto<cr>
 nnoremap <D-F> :grep
 noremap <F3> :set hlsearch!<cr>
 nmap <leader>J :%!python -m json.tool<cr>
-nnoremap <leader>T :silent! ctags . <cr>
+nnoremap <leader>T :! ctags .<cr>
 
 
 silent! helptags ALL
@@ -94,3 +97,24 @@ hi SpellBad cterm=underline
 
 set secure
 set exrc
+function! OscCopy()
+  let encodedText=@"
+  let encodedText=substitute(encodedText, '\', '\\\\', "g")
+  let encodedText=substitute(encodedText, "'", "'\\\\''", "g")
+  let executeCmd="echo -n '".encodedText."' | base64 | tr -d '\\n'"
+  let encodedText=system(executeCmd)
+  if $TMUX != ""
+    "tmux
+    let executeCmd='echo -en "\x1bPtmux;\x1b\x1b]52;;'.encodedText.'\x1b\x1b\\\\\x1b\\" > /dev/tty'
+  else
+    let executeCmd='echo -en "\x1b]52;;'.encodedText.'\x1b\\" > /dev/tty'
+  endif
+  call system(executeCmd)
+  redraw!
+endfunction
+command! OscCopy :call OscCopy()
+
+augroup ssh_clipboard
+  au!
+  au TextYankPost * call OscCopy()
+augroup END
