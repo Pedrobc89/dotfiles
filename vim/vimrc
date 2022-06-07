@@ -74,6 +74,7 @@ nnoremap <leader>e :ALENextWrap<cr>
 map <leader><space> :source ~/.vimrc<cr>
 " map <D-S> <Esc>:w<cr>
 nmap <F12> <C-]>
+nnoremap <leader>' :%s/\v^(.*)/"\1",/g<cr>
 nmap <leader>n :NERDTreeToggle<cr>
 nmap <leader>r :NERDTreeFind<cr>
 nnoremap <leader>t :CtrlPTag<cr>

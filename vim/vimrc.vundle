@@ -246,3 +246,5 @@ function! HighlightRepeats() range
     endif
   endfor
 endfunction
+
+command! HighlightRepeats :call HighlightRepeats()
