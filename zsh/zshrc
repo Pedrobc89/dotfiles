@@ -58,8 +58,8 @@ DISABLE_AUTO_TITLE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(z git gitfast python tmux docker docker-compose npm celery jira npm yarn kubectl)
-export ZSH_TMUX_AUTOSTART=true
+plugins=(z git gitfast python tmux docker docker-compose jira kubectl branch colorize gh )
+# export ZSH_TMUX_AUTOSTART=true
 
 source $ZSH/oh-my-zsh.sh
 
@@ -134,25 +134,31 @@ if [ -f '/Users/pato/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/
 export DISPLAY=:0.0
 
 # mcd core components
-REPO=~/Documents/Development/SingularityNET/repos/techlabs
+# ~/Documents/
+REPO="~/Documents/Development/IBM/repos/techlabs"
 OUTPUT_AUDIO_DEV='HDA Intel PCH'
 INPUT_AUDIO_DEV='HDA Intel PCH'
 function playbackdevice() { aplay -l | grep ${OUTPUT_AUDIO_DEV} | awk '{print $2}' | tr -d ': ' | head -n 1 | xargs echo; }
 function capturedevice() { arecord -l | grep ${INPUT_AUDIO_DEV} | awk '{print $2}' | tr -d ': ' | head -n 1 | xargs echo; }
-alias jackstart="cd $REPO && ./shake audio jack start --capture_device=hw:$(capturedevice) --playback_device=hw:$(playbackdevice)"
+alias jackstart="cd "$REPO" && ./shake audio jack start --capture_device=hw:$(capturedevice) --playback_device=hw:$(playbackdevice)"
 alias jackstop="cd $REPO && ./shake audio jack stop; sleep 1; pkill -f jackd; cd -"
 alias abmock="jackstop; sleep 1; jackstart; sleep 1; cd $REPO && ./shake audio ab mock --jack --mqtt=true"
-alias audioservice="cd $REPO && ./shake audio service"
-alias observerterminal="cd $REPO && ./shake va observer terminal"
-alias observerinjector="cd $REPO && ./shake va observer injector"
-alias asrservice="cd $REPO && ./shake va services asr --record_session_logs --echo_canceller='webrtc'"
-alias ttsservice="cd $REPO && ./shake va services tts"
-alias chatmanagerservice="cd $REPO && ./shake va services cms --all_day_breakfast"
+alias audioservice="./shake audio service"
+alias observerterminal="./shake va observer terminal"
+alias observerinjector="./shake va observer injector"
+alias asrservice="./shake va services asr --record_session_logs --echo_canceller='webrtc'"
+alias ttsservice="./shake va services tts"
+alias chatmanagerservice="./shake va services cms --all_day_breakfast"
 alias mqttprint="mosquitto_sub -v -t 'mcd_dev/+/+/AsrService/AsrSpeechDecoded' -t 'mcd_dev/+/+/TtsService/#' -t 'mcd_dev/+/+/ChatService/#' -t 'mcd_dev/+/+/LogCollector/#' -t 'mcd_dev/+/Bre/Evd/#' -t 'hme/#' -t 'mcd_dev/+/+/DialogState/#' -t 'evd/#'"
 alias tc='tmux setb "$(xclip -o -sel clipboard)"'
 alias shake="./shake"
 alias sa="./shake source sa"
 alias format="./shake source format"
-alias vpn="cd /home/pedro/Documents/Development/SingularityNET/mcd_vpn && sudo openvpn TechLabsVPN.ovpn"
+alias vpn="cd /home/pedro//office_vpn && sudo openvpn TechLabsVPN.ovpn"
+alias posstart="vboxmanage startvm POS"
+alias posstop="vboxmanage controlvm POS poweroff"
+alias posaidt="curl -d '{"enabled":"true"}' -H 'Content-Type: application/json' -X POST 'http://pos:8123/npsharp/services/RealTimeOrdering/SetOrderingEnabled'"
+alias /vim=/usr/bin/vim
+alias vim=nvim
 
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
