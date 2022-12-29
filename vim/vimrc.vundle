@@ -25,9 +25,6 @@ Plugin 'mileszs/ack.vim'
 " SuperTab for youcompleteme and ultisnips together
 Plugin  'ervandew/supertab'
 
-" Auto Completion
-Plugin 'Valloric/YouCompleteMe'
-
 " Tags
 Plugin 'craigemery/vim-autotag'
 Plugin 'majutsushi/tagbar'
@@ -39,7 +36,7 @@ Plugin 'SirVer/ultisnips'
 Plugin 'scrooloose/nerdcommenter'
 
 " Snippets are separated from the engine. Add this if you want them:
-" Plugin 'honza/vim-snippets'
+ Plugin 'honza/vim-snippets'
 
 " Rails
 " Plugin 'rails.vim'
@@ -103,6 +100,10 @@ Plugin 'vim-airline/vim-airline-themes'
 
 " Vim tmux navigator
 Plugin 'christoomey/vim-tmux-navigator'
+
+" Generic syntax highlighting
+Plugin 'sheerun/vim-polyglot'
+
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
