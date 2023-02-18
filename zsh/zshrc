@@ -91,7 +91,14 @@ zstyle :omz:plugins:ssh-agent identities id_rsa GA
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-source ~/.dotfiles/zsh/aliases
+unalias ipython
+alias gs='git status'
+#alias python="python3"
+alias pip='pip3'
+alias :q='exit'
+alias vpn="cd /Users/pedro/Documents/Development/IBM/office_vpn && sudo openvpn TechLabsVPN.ovpn"
+alias /vim=/usr/local/bin/vim
+alias vim=nvim
 alias zshconfig='vim -O ~/.dotfiles/zsh/zshrc ~/.dotfiles/zsh/aliases'
 alias vimconfig='cd ~/.dotfiles/vim ; vim -O ~/.dotfiles/vimrc ~/.dotfiles/vimrc.vundle'
 alias tmuxconfig='vim ~/.dotfiles/tmux'
@@ -106,3 +113,4 @@ alias nvimconfig='cd ~/.dotfiles/vim ; vim ~/.dotfiles/nvim/init.lua'
 export JIRA_NAME=Pedro
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+export PATH="/usr/local/sbin:$PATH"

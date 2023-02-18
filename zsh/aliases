@@ -1,7 +1,0 @@
-alias gs='git status'
-alias python="python3"
-alias pip='pip3'
-alias :q='exit'
-alias vpn="cd /Users/pedro/Documents/Development/IBM/office_vpn && sudo openvpn TechLabsVPN.ovpn"
-alias /vim=/usr/local/bin/vim
-alias vim=nvim
