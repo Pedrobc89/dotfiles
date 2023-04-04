@@ -23,8 +23,8 @@
 #brew install vim --with-python3
 
 # Install lsusb on mac
-brew tap jlhonora/lsusb && \
-brew install lsusb
+# brew tap jlhonora/lsusb && \
+# brew install lsusb
 
 # Remove previous dotfiles or symlinks
 echo "Removing existing dotfiles"

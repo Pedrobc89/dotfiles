@@ -11,8 +11,14 @@ set laststatus=2  " Always display the status line
 set autowrite     " Automatically :write before running commands
 set mouse=a       " Enable mouse to move windows
 
+" Failed attempt to yank to tmux
+" autocmd TextYankPost * call system("tc")
+
 " Set timeout to keys
 set timeoutlen=1000 ttimeoutlen=0
+
+" Youcompleteme requirement
+set encoding=utf-8"
 
 " Relative Numbering
 set relativenumber
@@ -27,7 +33,10 @@ set splitbelow
 set splitright
 
 " Set clipboard compatibility
-set clipboard=unnamed
+" set clipboard=unnamed
+" UBUNTU needs it to be unamedplus
+set clipboard=unnamedplus
+" set clipboard+=clipboard
 
 " Make it obvious where 80 characters is
 set textwidth=80
@@ -61,19 +70,52 @@ command WQa wqa
 " command WQ wq
 " command Wq wq
 
-map <D-S> :source ~/.vimrc
+nnoremap <leader>e :ALENextWrap<cr>
+map <leader><space> :source ~/.vimrc<cr>
 " map <D-S> <Esc>:w<cr>
 nmap <F12> <C-]>
+nnoremap <leader>' :%s/\v^(.*)/"\1",/g<cr>
 nmap <leader>n :NERDTreeToggle<cr>
 nmap <leader>r :NERDTreeFind<cr>
-nnoremap <leader>. :CtrlPTag<cr>
+nnoremap <leader>t :CtrlPTag<cr>
 nnoremap <leader>f :PyFlakeAuto<cr>
 nnoremap <D-F> :grep
 noremap <F3> :set hlsearch!<cr>
-nmap <leader>J :%!python -m json.tool<CR>
+nmap <leader>J :%!python -m json.tool<cr>
+nnoremap <leader>T :! ctags .<cr>
+
 
 silent! helptags ALL
 
 " Enable folding
 set foldmethod=indent
 set foldlevel=99
+
+" Spellcheckinh highlits
+hi clear SpellBad
+hi SpellBad cterm=underline
+
+
+set secure
+set exrc
+function! OscCopy()
+  let encodedText=@"
+  let encodedText=substitute(encodedText, '\', '\\\\', "g")
+  let encodedText=substitute(encodedText, "'", "'\\\\''", "g")
+  let executeCmd="echo -n '".encodedText."' | base64 | tr -d '\\n'"
+  let encodedText=system(executeCmd)
+  if $TMUX != ""
+    "tmux
+    let executeCmd='echo -en "\x1bPtmux;\x1b\x1b]52;;'.encodedText.'\x1b\x1b\\\\\x1b\\" > /dev/tty'
+  else
+    let executeCmd='echo -en "\x1b]52;;'.encodedText.'\x1b\\" > /dev/tty'
+  endif
+  call system(executeCmd)
+  redraw!
+endfunction
+command! OscCopy :call OscCopy()
+
+augroup ssh_clipboard
+  au!
+  au TextYankPost * call OscCopy()
+augroup END
