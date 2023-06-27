@@ -1,8 +1,15 @@
+#-------------------------------------------------------#
+#reattach-to-user-namespace must be installed
+#-------------------------------------------------------#
+#the following line refers to the file ~/.tmux-osx.conf
+# if-shell 'test "$(uname)" = "Darwin"' 'source ~/.dotfiles/tmux/tmux-osx.conf'
+# bind-key -T copy-mode C-\ send-keys -X copy-pipe-and-cancel "pbcopy"
+#-------------------------------------------------------#
+
 set -g default-terminal "screen-256color"
 set-option -sa terminal-overrides ',xterm-256color:RGB'
 
 set -g history-limit 20000
-set -g focus-events on
 
 set-option -g focus-events on
 
@@ -21,7 +28,6 @@ unbind C-b
 set-option -g prefix C-a
 bind-key C-a send-prefix
 
-
 # quickly open a new window
 bind N new-window
 
@@ -34,7 +40,7 @@ bind | split-window -h -c "#{pane_current_path}"
 bind - split-window -v -c "#{pane_current_path}"
 
 # synchronize all panes in a window
-bind S setw synchronize-panes
+bind y setw synchronize-panes
 
 # pane movement shortcuts
 bind h select-pane -L
@@ -59,19 +65,10 @@ setw -g mode-keys vi
 # more settings to make copy-mode more vim-like
 unbind [
 bind Escape copy-mode
-bind-key -T copy-mode-vi v send-keys -X begin-selection
-# bind-key -T copy-mode-vi y send-keys -X copy-selection
-# bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel 'xclip -in -selection clipboard'
-
-# clipboard manager
-unbind y
-# bind y run "tmux set-buffer \"$(xclip -o -selection clipboard)\"; tmux paste-buffer"
-# bind y run 'tmux setb "$(xclip -o -sel clipboard)"'
-# unbind u
-# bind u run 'tmux setb fuckkk'
 unbind p
 bind p paste-buffer
-
+bind-key -T copy-mode-vi v send-keys -X begin-selection
+bind-key -T copy-mode-vi y send-keys -X copy-selection
 
 
 # switch panes using Alt-arrow without prefix
@@ -80,18 +77,26 @@ bind -n M-Right select-pane -R
 bind -n M-Up select-pane -U
 bind -n M-Down select-pane -D
 
-# Binds prefix C-l to clear screen
+# switch windows with command+number
+bind -n M-u display "it worked"
+#bind -n M-u select-window -t 1; display "it worked"
+#bind -n M-2 select-pane -R
+#bind -n M-3 select-pane -U
+
+
+# smart pane switching with awareness of vim splits
+bind -n C-h run "(tmux display-message -p '#{pane_current_command}' | grep -iq vim && tmux send-keys C-h) || tmux select-pane -L"
+bind -n C-j run "(tmux display-message -p '#{pane_current_command}' | grep -iq vim && tmux send-keys C-j) || tmux select-pane -D"
+bind -n C-k run "(tmux display-message -p '#{pane_current_command}' | grep -iq vim && tmux send-keys C-k) || tmux select-pane -U"
+bind -n C-l run "(tmux display-message -p '#{pane_current_command}' | grep -iq vim && tmux send-keys C-l) || tmux select-pane -R"
+
+# Binds prefix C-l to ckearscreen
 bind C-l send-keys 'C-l'
 
-# List of plugins
-set -g @plugin 'tmux-plugins/tpm'
-set -g @plugin 'tmux-plugins/tmux-sensible'
+##############################
+### Color & Style Settings ###
+##############################
 
-# Other examples:
-# set -g @plugin 'github_username/plugin_name'
-# set -g @plugin 'github_username/plugin_name#branch'
-# set -g @plugin 'git@github.com:user/plugin'
-# set -g @plugin 'git@bitbucket.com:user/plugin'
+source ~/.dotfiles/tmux/theme.sh
 
-# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
-run '~/.tmux/plugins/tpm/tpm'
+
