@@ -105,7 +105,7 @@ alias vim=nvim
 
 
 # Source the configured path variables
-# source ~/.profile
+source ~/.profile
 
 # Enables clipbord sharing why it works still a mistery!!
 export DISPLAY=:0.0
