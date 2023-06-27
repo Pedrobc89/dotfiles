@@ -26,3 +26,7 @@ map("n", "<C-h>", "<cmd> TmuxNavigateLeft<CR>", { desc = "Navigate left" })
 map("n", "<C-l>", "<cmd> TmuxNavigateRight<CR>", { desc = "Navigate right" })
 map("n", "<C-j>", "<cmd> TmuxNavigateDown<CR>", { desc = "Navigate down" })
 map("n", "<C-k>", "<cmd> TmuxNavigateUp<CR>", { desc = "Navigate up" })
+
+-- Fugitive remap to 3way merge
+map("n", "<leader><", ":diffget //2<CR>", { desc = "3way merge left" })
+map("n", "<leader>>", ":diffget //3<CR>", { desc = "3way merge right" })
