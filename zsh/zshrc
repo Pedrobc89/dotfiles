@@ -1,9 +1,12 @@
+export DOTFILES=$HOME/.dotfiles
+
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=$HOME/.dotfiles/bin:$PATH
+export PATH=$DOTFILES/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
+export ZSH_CUSTOM=$DOTFILES/zsh/custom
 
 # Disables virtual environment prompt change (agnoster-custom theme will show it)
 export VIRTUAL_ENV_DISABLE_PROMPT=1
@@ -11,7 +14,7 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="agnoster-custom" # set by `omz`
+ZSH_THEME="agnoster" # set by `omz`
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -89,9 +92,9 @@ zstyle :omz:plugins:ssh-agent identities github-techlabs github-polly github-Ped
 #
 # Example aliases
 unalias ipython
-alias zshconfig="vim ~/.dotfiles/zsh/zshrc"
-alias vimconfig='cd ~/.dotfiles/vim ; vim -O vimrc vimrc.vundle'
-alias tmuxconfig='cd ~/.dotfiles/tmux ; vim -O *'
+alias zshconfig="vim $DOTFILES/zsh/zshrc"
+alias vimconfig="cd $DOTFILES/vim ; vim -O vimrc vimrc.vundle"
+alias tmuxconfig="cd $DOTFILES/tmux ; vim -O *"
 
 alias gs='git status'
 alias python="python3"
