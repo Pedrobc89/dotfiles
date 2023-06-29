@@ -3,6 +3,6 @@
 -- Add any additional options here
 --
 -- Disable automatically comment on next line
-vim.opt_local.formatoptions:remove("cro")
--- vim.opt_local.formatoptions:remove("q")
--- vim.opt_local.formatoptions:remove("2")
+vim.opt.colorcolumn = "100"
+-- vim.opt.formatoptions:remove("cro")
+vim.cmd [[set formatoptions-=cro]]
