@@ -18,6 +18,7 @@ fi
 
 # TODO: make it non interactive
 # install Homebrew for linux as a package manager (non interactive)
+# explore NONINTERACTIVE=1 option
 /bin/bash -c \
 	"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
@@ -29,15 +30,15 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 brew update && brew upgrade && brew doctor
 
 # install nvim, vim, tmux, zsh, python@3.11, gcc
-brew install \
-	nvim vim tmux zsh gcc docker \
-	python@3.11 python@3.10 python@3.9 python@3.8 python@3.7 \
-	wget btop bat fzf fd ripgrep k9s gh dust tealdeer ruby rust \
-  lazydocker lazygit
+brew install nvim vim tmux zsh gcc python3 wget btop bat fzf fd ripgrep
+brew install k9s gh dust tealdeer ruby rust lazydocker lazygit tree-sitter lua
+brew install npm yarn nodejs go docker docker-compose nvm kubectl helm
 
 # install apps and casks for macos
 if [ "$macos" = true ]; then
-  brew isntall iterm2
+	brew cask install iterm2
+elif [[ "$linux" = true ]]; then
+	brew install xsel
 fi
 
 # install hackfont on macos we can use brew
@@ -55,9 +56,10 @@ elif [ "$linux" = true ]; then
 	rm -r ~/font-hack-nerd-font ~/font-hack-nerd-font.zip
 fi
 
-if 
-# Cattpuccin as terminal colorscheme
-curl -L https://raw.githubusercontent.com/catppuccin/gnome-terminal/v0.2.0/install.py | python3 -
+if [ "$linux" = true ]; then
+	# Cattpuccin as terminal colorscheme
+	curl -L https://raw.githubusercontent.com/catppuccin/gnome-terminal/v0.2.0/install.py | python3 -
+fi
 
 # make zsh as default shell
 chsh -s $(which zsh)
@@ -69,18 +71,11 @@ else
 	echo "zsh is the default shell"
 fi
 
-# install oh-my-zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-
+# TODO: need to spinup neovim to download plugins or ditch LazyVim and use my own
 # Download and install LazyVim
-if [ ! -d ~/.config/nvim ]; then
-	mkdir ~/.config/nvim
-else
-	mv ~/.config/nvim ~/.config/nvim.bak
-	mkdir ~/.config/nvim
-fi
+[ -d ~/.config/nvim ] && mv ~/.config/nvim ~/.config/nvim.bak
 git clone https://github.com/LazyVim/starter ~/.config/nvim
-rm -r ~/.config/nvim/.git
+rm -rf ~/.config/nvim/.git
 
 # Clone TPM (Tmux Plugin Manager)
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
@@ -127,3 +122,5 @@ echo "  HostName github.com" >>~/.ssh/config
 echo "  User git" >>~/.ssh/config
 echo "  IdentityFile ~/.ssh/github-Pedrobc89" >>~/.ssh/config
 
+# install oh-my-zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
