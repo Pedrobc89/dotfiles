@@ -17,6 +17,14 @@ return {
         end,
         desc = "Explorer NeoTree (cwd)",
       },
+      {
+        "<leader>r",
+        function()
+          require("neo-tree.command").execute({ reveal = true })
+        end,
+        desc = "Reveal File",
+        remap = true,
+      },
       { "<leader>e", "<leader>fe", desc = "Explorer NeoTree (root dir)", remap = true },
       { "<leader>E", "<leader>fE", desc = "Explorer NeoTree (cwd)", remap = true },
     },
@@ -36,13 +44,14 @@ return {
       sources = { "filesystem", "buffers", "git_status", "document_symbols" },
       open_files_do_not_replace_types = { "terminal", "Trouble", "qf", "Outline" },
       filesystem = {
-        bind_to_cwd = false,
-        follow_current_file = true,
+        bind_to_cwd = true,
+        follow_current_file = false,
         use_libuv_file_watcher = true,
       },
       window = {
         mappings = {
           ["<space>"] = "none",
+          ["/"] = "none",
         },
       },
       default_component_configs = {
