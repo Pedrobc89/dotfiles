@@ -13,10 +13,13 @@ return {
     -- change some options
     opts = {
       defaults = {
-        layout_strategy = "horizontal",
-        layout_config = { prompt_position = "top" },
-        sorting_strategy = "ascending",
-        winblend = 0,
+        -- Format path as "file.txt (path\to\file\)"
+        -- path_display = function(opts, path)
+        --   local tail = require("telescope.utils").path_tail(path)
+        --   return string.format("%s | %s", tail, path)
+        -- end,
+        path_display = { "truncate" },
+        border = true,
       },
     },
   },
