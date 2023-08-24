@@ -1,48 +1,38 @@
 return {
   {
     "zbirenbaum/copilot.lua",
+    keys = {},
     cmd = "Copilot",
     build = ":Copilot auth",
     opts = {
-      suggestion = { enabled = false },
-      panel = { enabled = false },
+      suggestion = { enabled = true },
+      panel = { enabled = true },
       filetypes = {
         markdown = true,
         help = true,
+        python = true,
+        typescript = true,
+        typescriptreact = true,
+        javascript = true,
+        javascriptreact = true,
+        vue = true,
+        html = true,
+        go = true,
+        rust = true,
+        lua = true,
+        yaml = true,
+        json = true,
+        toml = true,
+        dockerfile = true,
+        sh = function()
+          if string.match(vim.fs.basename(vim.api.nvim_buf_get_name(0)), "^%.env.*") then
+            -- disable for .env files
+            return false
+          end
+          return true
+        end,
       },
     },
-  },
-  {
-    "nvim-lualine/lualine.nvim",
-    optional = true,
-    event = "VeryLazy",
-    opts = function(_, opts)
-      local Util = require("lazyvim.util")
-      local colors = {
-        [""] = Util.fg("Special"),
-        ["Normal"] = Util.fg("Special"),
-        ["Warning"] = Util.fg("DiagnosticError"),
-        ["InProgress"] = Util.fg("DiagnosticWarn"),
-      }
-      table.insert(opts.sections.lualine_x, 2, {
-        function()
-          local icon = require("lazyvim.config").icons.kinds.Copilot
-          local status = require("copilot.api").status.data
-          return icon .. (status.message or "")
-        end,
-        cond = function()
-          local ok, clients = pcall(vim.lsp.get_active_clients, { name = "copilot", bufnr = 0 })
-          return ok and #clients > 0
-        end,
-        color = function()
-          if not package.loaded["copilot"] then
-            return
-          end
-          local status = require("copilot.api").status.data
-          return colors[status.status] or colors[""]
-        end,
-      })
-    end,
   },
   {
     "zbirenbaum/copilot-cmp",
