@@ -3,3 +3,6 @@
 -- Add any additional options here
 --
 vim.o.conceallevel = 0
+
+-- Set colorcolumn = 80
+vim.opt.colorcolumn = "80"
