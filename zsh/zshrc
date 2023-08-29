@@ -1,5 +1,8 @@
 export DOTFILES=$HOME/.dotfiles
 
+# Source the configured path variables
+test -e "${HOME}/.profile" && source "${HOME}/.profile"
+
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH=$DOTFILES/bin:$PATH
@@ -109,9 +112,6 @@ alias cat=bat
 alias /vim=/usr/bin/vim
 alias vim=nvim
 
-
-# Source the configured path variables
-test -e "${HOME}/.profile" && source "${HOME}/.profile"
 
 source ~/
 test -e "${HOME}/.config/work/config.zsh" && source "${HOME}/.config/work/config.zsh"
