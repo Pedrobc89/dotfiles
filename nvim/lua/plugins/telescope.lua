@@ -18,6 +18,7 @@ return {
         --   local tail = require("telescope.utils").path_tail(path)
         --   return string.format("%s | %s", tail, path)
         -- end,
+        hidden = true,
         path_display = { "truncate" },
         border = true,
       },
