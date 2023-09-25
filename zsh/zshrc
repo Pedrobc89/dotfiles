@@ -117,10 +117,6 @@ alias /vim=/usr/bin/vim
 alias vim=nvim
 
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 238b5dd70faa1655e82717fd85c8a8f6b9beabcb
 source ~/
 test -e "${HOME}/.config/work/config.zsh" && source "${HOME}/.config/work/config.zsh"
 
