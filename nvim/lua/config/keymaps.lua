@@ -30,3 +30,7 @@ map("n", "<C-k>", "<cmd> TmuxNavigateUp<CR>", { desc = "Navigate up" })
 -- Fugitive remap to 3way merge
 map("n", "<leader><", ":diffget //2<CR>", { desc = "3way merge left" })
 map("n", "<leader>>", ":diffget //3<CR>", { desc = "3way merge right" })
+
+--buffers
+map("n", "<leader>bn", "<cmd>bnext<CR>", { desc = "Next buffer" })
+map("n", "<leader>bp", "<cmd>bprevious<CR>", { desc = "Previous buffer" })
