@@ -16,7 +16,7 @@ return {
       --   "IndentBlanklineIndent1",
       --   "IndentBlanklineIndent2",
       -- },
-      show_trailing_blankline_indent = false,
+      -- show_trailing_blankline_indent = false,
     },
   },
 }
