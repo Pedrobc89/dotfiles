@@ -24,6 +24,7 @@ return {
         json = true,
         toml = true,
         dockerfile = true,
+        txt = true,
         sh = function()
           if string.match(vim.fs.basename(vim.api.nvim_buf_get_name(0)), "^%.env.*") then
             -- disable for .env files
@@ -33,21 +34,5 @@ return {
         end,
       },
     },
-  },
-  {
-    "zbirenbaum/copilot-cmp",
-    dependencies = "copilot.lua",
-    opts = {},
-    config = function(_, opts)
-      local copilot_cmp = require("copilot_cmp")
-      copilot_cmp.setup(opts)
-      -- attach cmp source whenever copilot attaches
-      -- fixes lazy-loading issues with the copilot cmp source
-      require("lazyvim.util").on_attach(function(client)
-        if client.name == "copilot" then
-          copilot_cmp._on_insert_enter({})
-        end
-      end)
-    end,
   },
 }

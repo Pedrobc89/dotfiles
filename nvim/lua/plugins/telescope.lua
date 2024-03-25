@@ -9,6 +9,13 @@ return {
         function() require("telescope.builtin").find_files({ cwd = require("lazy.core.config").options.root }) end,
         desc = "Find Plugin File",
       },
+      {
+        "<leader>gb",
+        function()
+          require("telescope.builtin").git_branches()
+        end,
+        desc = "Git Branches",
+      },
     },
     -- change some options
     opts = {
@@ -18,8 +25,7 @@ return {
         --   local tail = require("telescope.utils").path_tail(path)
         --   return string.format("%s | %s", tail, path)
         -- end,
-        hidden = true,
-        path_display = { "truncate" },
+        path_display = { "tail" },
         border = true,
       },
     },

@@ -115,13 +115,18 @@ alias nvimf='fzfp | xargs nvim'
 alias cat=bat
 alias /vim=/usr/bin/vim
 alias vim=nvim
+alias ls=exa
 
 
 source ~/
-test -e "${HOME}/.config/work/config.zsh" && source "${HOME}/.config/work/config.zsh"
+test -e "${HOME}/.config/work/config.sh" && source "${HOME}/.config/work/config.sh"
 
 # Enables clipbord sharing why it works still a mistery!!
 export DISPLAY=:0.0
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 export PATH="/usr/local/sbin:$PATH"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
