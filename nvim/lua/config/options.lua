@@ -6,11 +6,9 @@ vim.g.autoformat = false
 vim.o.conceallevel = 0
 
 -- Set colorcolumn = 80
-vim.opt.colorcolumn = "100"
+vim.opt.colorcolumn = "80"
 
--- Add 3rdparty/python/configs/  to runtimepath to allow for python linters to work
-vim.opt.runtimepath:append("./3rdparty/python/configs/")
-
-vim.cmd([[
-  let g:python3_host_prog = '/home/pedro/Documents/Development/IBM/repos/techlabs/dist/export/python/virtualenvs/python-repository/3.8.16'
-]])
+-- if local_options.lua is present, it will override this file
+if vim.loop.fs_stat(vim.fn.stdpath("config").."/lua/config/local_options.lua") then
+  require("config.local_options")
+end
