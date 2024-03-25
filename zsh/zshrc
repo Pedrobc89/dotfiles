@@ -106,7 +106,6 @@ alias :q='exit'
 alias light='base16_classic-light'
 alias dark='base16_classic-dark'
 
-alias gcof="git branch | fzf | xargs git checkout"
 # fzf aliases
 alias tldrf='tldr --list | fzf --preview "tldr {1} --color=always" --preview-window=right,70% | xargs tldr'
 alias gcof="git branch | fzf | xargs git checkout"
