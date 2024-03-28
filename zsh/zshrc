@@ -1,3 +1,7 @@
+# profiling zsh
+
+# zmodload zsh/zprof
+
 export DOTFILES=$HOME/.dotfiles
 
 # Source the configured path variables
@@ -116,6 +120,21 @@ alias cat=bat
 alias /vim=/usr/bin/vim
 alias vim=nvim
 
+alias nvim-lazy="NVIM_APPNAME=LazyVim nvim"
+alias nvim-kick="NVIM_APPNAME=kickstart nvim"
+
+function nvims() {
+  items=("default" "kickstart" "LazyVim")
+  config=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Neovim Config  " --height=~50% --layout=reverse --border --exit-0)
+  if [[ -z $config ]]; then
+    echo "Nothing selected"
+    return 0
+  elif [[ $config == "default" ]]; then
+    config=""
+  fi
+  NVIM_APPNAME=$config nvim $@
+}
+
 
 source ~/
 test -e "${HOME}/.config/work/config.zsh" && source "${HOME}/.config/work/config.zsh"
@@ -125,3 +144,5 @@ export DISPLAY=:0.0
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 export PATH="/usr/local/sbin:$PATH"
+
+# zprof > /tmp/zsh_prof
