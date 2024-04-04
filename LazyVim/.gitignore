@@ -6,3 +6,6 @@ debug
 foo.*
 *.log
 data
+
+# Lua local files (for local nvim settings)
+**/local_*.lua
