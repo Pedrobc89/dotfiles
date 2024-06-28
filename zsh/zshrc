@@ -116,13 +116,16 @@ alias gcof="git branch | fzf | xargs git checkout"
 alias fzfp='fzf --preview="bat --color=always --style=numbers {}"'
 alias nvimf='fzfp | xargs nvim'
 
+alias .cat=/bin/cat
 alias cat=bat
 alias /vim=/usr/bin/vim
 alias vim=nvim
-alias ls=exa
 
+# easy switch nvim config
 alias nvim-lazy="NVIM_APPNAME=LazyVim nvim"
 alias nvim-kick="NVIM_APPNAME=kickstart nvim"
+# leave default as LazyVim for now
+alias nvim="NVIM_APPNAME=LazyVim nvim"
 
 function nvims() {
   items=("default" "kickstart" "LazyVim")
