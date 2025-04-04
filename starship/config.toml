@@ -1,17 +1,14 @@
 format = """
-[](bg:#545353 fg:#545353)\
 $character\
 $os\
 $time\
-[](bg:#545353 fg:#545353)\
+[](bg:surface1 fg:surface1)\
 $username\
 $hostname\
-[](bg:blue fg:#545353)\
+[](bg:blue fg:surface1)\
 $directory\
-$custom\
-[](bg:#86BBD8 fg:#33658A)\
+$custom
 """
-
 # $c\
 # $elixir\
 # $elm\
@@ -27,34 +24,31 @@ $custom\
 # $scala\
 # [](bg:#06969A fg:#86BBD8)\
 # $docker_context\
-# [ ](fg:#545353)\
+# [ ](fg:surface1)\
 
 # Disable the blank line at the start of the prompt
 add_newline = false
 # Choose pallete
-pallete = "catppuccin_mocha"
-
+palette = "catppuccin_mocha"
 
 # Starship modules
 [character]
 success_symbol = ""
-error_symbol = "[✘](fg:red bg:#545353)"
-format = "[$symbol ](bg:#545353 fg:#545353)"
- 
-
+error_symbol = "[✘](fg:red bg:surface1)"
+format = "[ $symbol ](bg:surface1 fg:surface1)"
 
 # You can also replace your username with a neat symbol like   or disable this
 # and use the os module below
 [username]
 show_always = true
-style_user = "bg:#545353"
-style_root = "bg:#545353"
+style_user = "bg:surface1"
+style_root = "bg:surface1"
 format = '[$user@]($style)'
 disabled = false
 
 [hostname]
 ssh_only = false
-style= "bg:#545353"
+style= "bg:surface1"
 trim_at = "."
 ssh_symbol = "🌐"
 format = "[$ssh_symbol$hostname ]($style)"
@@ -62,7 +56,7 @@ format = "[$ssh_symbol$hostname ]($style)"
 # An alternative to the username module which displays a symbol that
 # represents the current operating system
 [os]
-style = "bg:#545353"
+style = "bg:surface1"
 disabled = false # Disabled by default
 
 [os.symbols]
@@ -90,6 +84,29 @@ truncation_symbol = ""
 # So either put "Important Documents" before "Documents" or use the substituted version:
 # "Important 󰈙 " = " 󰈙 "
 
+[custom.git_branch_dirty]
+# when = "git rev-parse --is-inside-work-tree 2>/dev/null"
+when = 'git rev-parse --is-inside-work-tree 2>/dev/null && [ -n "$(git status --porcelain)" ]'
+command = "git symbolic-ref --short HEAD 2>/dev/null"
+style="bg:yellow fg:black"
+format = "[](bg:yellow fg:blue)[  $output ]($style)[ ](fg:yellow)"
+
+[custom.git_branch_clean]
+when = 'git rev-parse --is-inside-work-tree 2>/dev/null && [ -z "$(git status --porcelain 2>/dev/null)" ]'
+command = 'git symbolic-ref --short HEAD 2>/dev/null'
+style = "bg:green fg:black"
+format = "[](fg:blue bg:green)[  $output ]($style)[ ](fg:green)"
+
+[custom.outside_git]
+when = "! git rev-parse --is-inside-work-tree 2>/dev/null"
+format = "[ ](fg:blue)"
+
+[git_branch]
+disabled = true
+
+[git_status]
+disabled = true
+
 [c]
 symbol = " "
 style = "bg:#86BBD8"
@@ -109,41 +126,6 @@ format = '[ $symbol ($version) ]($style)'
 symbol = " "
 style = "bg:#86BBD8"
 format = '[ $symbol ($version) ]($style)'
-
-[custom.git_branch_dirty]
-# when = "git rev-parse --is-inside-work-tree 2>/dev/null"
-when = '[ -n "$(git status --porcelain)" ]'
-command = "git symbolic-ref --short HEAD 2>/dev/null"
-style="bg:yellow fg:black"
-format = "[](bg:yellow fg:blue)[  $output ]($style)[](fg:yellow)"
-
-[custom.git_branch_clean]
-when = '[ -z "$(git status --porcelain 2>/dev/null)" ]'
-command = 'git symbolic-ref --short HEAD 2>/dev/null'
-style = "bg:green fg:black"
-format = "[](fg:blue bg:green)[  $output ]($style)[](fg:green)"
-
-[git_branch]
-symbol = ""
-style = "bg:#33658A black"
-format = '[ $symbol $branch ]($style)'
-disabled = true
-
-[git_status]
-disabled = true
-style = "bg:#33658A black"
-format = '[$all_status$ahead_behind ]($style)'
-conflicted = '🏳'
-ahead = '🏎💨'
-behind = '😰'
-diverged = '😵'
-up_to_date = '✓'
-untracked = '🤷'
-stashed = '📦'
-modified = '📝'
-staged = '[++\($count\)](green)'
-renamed = '👅'
-deleted = '🗑'
 
 [golang]
 symbol = " "
@@ -192,7 +174,7 @@ format = '[ $symbol ($version) ]($style)'
 [time]
 disabled = false
 time_format = "%R" # Hour:Minute Format
-style = "bg:#545353"
+style = "bg:surface1"
 format = '[$time]($style)'
 
 [palettes.catppuccin_mocha]
