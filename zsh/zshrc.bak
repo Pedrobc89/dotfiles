@@ -101,14 +101,11 @@ zstyle :omz:plugins:ssh-agent identities github-Pedrobc89
 alias cpr="gh pr create --assignee @me -w"
 alias zshconfig="vim $DOTFILES/zsh/zshrc"
 alias vimconfig="cd $DOTFILES/vim ; vim -O vimrc vimrc.vundle"
-alias tmuxconfig="cd $DOTFILES/tmux ; vim -O *"
 
 alias gs='git status'
 alias python="python3"
 alias pip='pip3'
 alias :q='exit'
-alias light='base16_classic-light'
-alias dark='base16_classic-dark'
 
 # fzf aliases
 alias tldrf='tldr --list | fzf --preview "tldr {1} --color=always" --preview-window=right,70% | xargs tldr'
@@ -119,32 +116,6 @@ alias nvimf='fzfp | xargs nvim'
 alias .cat=/bin/cat
 alias cat=bat
 alias /vim=/usr/bin/vim
-
-# easy switch nvim config
-alias nvim-kick="NVIM_APPNAME=kickstart nvim"
-# leave default as LazyVim for now
-
-function nvims() {
-  items=("default" "kickstart")
-  config=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Neovim Config  " --height=~50% --layout=reverse --border --exit-0)
-  if [[ -z $config ]]; then
-    echo "Nothing selected"
-    return 0
-  elif [[ $config == "default" ]]; then
-    config=""
-  fi
-  NVIM_APPNAME=$config nvim $@
-}
-
-
-source ~/
-test -e "${HOME}/.config/work/config.sh" && source "${HOME}/.config/work/config.sh"
-
-# Enables clipbord sharing why it works still a mistery!!
-export DISPLAY=:0.0
-
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-export PATH="/usr/local/sbin:$PATH"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
