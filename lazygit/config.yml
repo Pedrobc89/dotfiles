@@ -1,5 +1,0 @@
-notARepository: 'quit'
-customCommands:
-  - key: 'l'
-    command: 'git pull'
-    context: 'global'
