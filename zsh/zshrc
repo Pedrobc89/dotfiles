@@ -25,20 +25,26 @@ done
 [ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
 plug "zsh-users/zsh-autosuggestions"
 plug "zap-zsh/supercharge"
-# plug "zap-zsh/zap-prompt"
-# plug "zsh-users/zsh-syntax-highlighting"
+plug "zsh-users/zsh-syntax-highlighting"
+plug "zsh-users/zsh-history-substring-search"
 
 plug "zap-zsh/completions"
 plug "chivalryq/git-alias"
 plug "atoftegaard-git/zsh-omz-autocomplete"
 plug "zap-zsh/fzf"
 plug "wintermi/zsh-brew"
+plug "MenkeTechnologies/zsh-expand"
 # plug "sdiebolt/zsh-ssh-agent"
 
 plug "MichaelAquilina/zsh-you-should-use"
 
 
 eval "$(zoxide init zsh)"
+
+# search history settings
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND=
 
 export STARSHIP_CONFIG=$DOTFILES/starship/config.toml
 eval "$(starship init zsh)"

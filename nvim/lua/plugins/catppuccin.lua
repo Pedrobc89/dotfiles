@@ -1,7 +1,11 @@
 return {
   {
     "catppuccin/nvim",
-    lazy = true,
+    config = function()
+      vim.cmd.colorscheme "catppuccin"
+    end,
+    lazy = false, -- make sure we load this during startup
+    priority = 1000, -- make sure we load this before all other start plugins
     name = "catppuccin",
     opts = {
       transparent_background = true,

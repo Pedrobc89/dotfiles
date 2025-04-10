@@ -35,6 +35,7 @@ palette = "catppuccin_mocha"
 [character]
 success_symbol = ""
 error_symbol = "[✘](fg:red bg:surface1)"
+vimcmd_symbol = "[](fg:yellow bg:surface1)"
 format = "[ $symbol ](bg:surface1 fg:surface1)"
 
 # You can also replace your username with a neat symbol like   or disable this

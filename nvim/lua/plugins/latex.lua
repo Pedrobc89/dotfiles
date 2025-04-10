@@ -1,6 +1,5 @@
 return {
   "lervag/vimtex",
-  lazy = false,
   tag = "v2.16",
   ft = "tex",
   init = function ()
@@ -8,3 +7,4 @@ return {
     vim.g.vimtex_compiler_method = "latexmk"
   end,
 }
+

@@ -55,6 +55,7 @@ function install() {
   brew install nvim vim tmux zsh gcc python3 wget btop bat fzf fd ripgrep
   brew install k9s gh dust tealdeer ruby rust lazydocker lazygit tree-sitter lua
   brew install npm yarn nodejs go nvm kubectl helm
+  brew install starship
 
   # install apps and casks for macos
   if [ "$macos" = true ]; then
