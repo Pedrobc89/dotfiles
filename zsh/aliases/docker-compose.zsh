@@ -1,3 +1,4 @@
+local dccmd="docker compose"
 alias dco="$dccmd"
 alias dcb="$dccmd build"
 alias dce="$dccmd exec"

@@ -1,6 +1,8 @@
 format = """
 $character\
 $os\
+$python\
+$docker_context\
 $time\
 [](bg:surface1 fg:surface1)\
 $username\
@@ -9,6 +11,7 @@ $hostname\
 $directory\
 $custom
 """
+#
 # $c\
 # $elixir\
 # $elm\
@@ -19,11 +22,9 @@ $custom
 # $julia\
 # $nodejs\
 # $nim\
-# $python\
 # $rust\
 # $scala\
 # [](bg:#06969A fg:#86BBD8)\
-# $docker_context\
 # [ ](fg:surface1)\
 
 # Disable the blank line at the start of the prompt
@@ -49,16 +50,23 @@ disabled = false
 
 [hostname]
 ssh_only = false
-style= "bg:surface1"
+style = "bg:surface1"
 trim_at = "."
 ssh_symbol = "🌐"
 format = "[$ssh_symbol$hostname ]($style)"
+
+[python]
+style = "bg:surface1"
+symbol = "🐍"
+version_format = "${major}.${minor}"
+format = '[${symbol}${version} (\($virtualenv\) )]($style)'
+
 
 # An alternative to the username module which displays a symbol that
 # represents the current operating system
 [os]
 style = "bg:surface1"
-disabled = false # Disabled by default
+disabled = false      # Disabled by default
 
 [os.symbols]
 Debian = " "
@@ -89,7 +97,7 @@ truncation_symbol = ""
 # when = "git rev-parse --is-inside-work-tree 2>/dev/null"
 when = 'git rev-parse --is-inside-work-tree 2>/dev/null && [ -n "$(git status --porcelain)" ]'
 command = "git symbolic-ref --short HEAD 2>/dev/null"
-style="bg:yellow fg:black"
+style = "bg:yellow fg:black"
 format = "[](bg:yellow fg:blue)[  $output ]($style)[ ](fg:yellow)"
 
 [custom.git_branch_clean]
@@ -115,7 +123,7 @@ format = '[ $symbol ($version) ]($style)'
 
 [docker_context]
 symbol = " "
-style = "bg:#06969A"
+style = "bg:surface1"
 format = '[ $symbol $context ]($style)'
 
 [elixir]
@@ -174,7 +182,7 @@ format = '[ $symbol ($version) ]($style)'
 
 [time]
 disabled = false
-time_format = "%R" # Hour:Minute Format
+time_format = "%R"         # Hour:Minute Format
 style = "bg:surface1"
 format = '[$time]($style)'
 

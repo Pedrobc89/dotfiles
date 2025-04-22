@@ -148,7 +148,6 @@ function install() {
 
   # Create symlinks to home folder
   echo "Installing dotfiles"
-  ln -sf ~/.dotfiles/vim/vimrc ~/.vimrc
   ln -sf ~/.dotfiles/tmux/tmux.conf ~/.tmux.conf
   ln -sf ~/.dotfiles/zsh/zshrc ~/.zshrc
   ln -sf ~/.dotfiles/nvim ~/.config/nvim
