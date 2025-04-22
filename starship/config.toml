@@ -46,15 +46,15 @@ format = "[ $symbol ](bg:surface1 fg:surface1)"
 show_always = true
 style_user = "bg:surface1"
 style_root = "bg:surface1"
-format = '[$user ]($style)'
+format = '[$user@]($style)'
 disabled = false
 
 [hostname]
-ssh_only = true
+ssh_only = false
 style = "bg:surface1"
 trim_at = "."
-ssh_symbol = "🌐"
-format = "[$ssh_symbol$hostname ]($style)"
+ssh_symbol = ""
+format = "[$hostname ]($style)"
 
 [python]
 style = "bg:surface1"
