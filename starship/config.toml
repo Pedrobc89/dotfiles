@@ -53,7 +53,7 @@ disabled = false
 ssh_only = true
 style = "bg:surface1"
 trim_at = "."
-ssh_symbol = ""
+ssh_symbol = "🌐"
 format = "[$ssh_symbol$hostname ]($style)"
 
 [python]
