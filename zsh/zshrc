@@ -38,7 +38,9 @@ plugins=(
   colored-man-pages
   zoxide
   starship
+  zsh-syntax-highlighting
 )
+
 
 ZSH_TMUX_AUTOSTART=false
 

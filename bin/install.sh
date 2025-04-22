@@ -21,6 +21,9 @@ function brew_install(){
 }
 
 function install() {
+  # Add this to install syntax highliting
+  # git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+
   echo "Installing dotfiles"
   # check wich operating system we are running
   if [ "$(uname)" == "Darwin" ]; then
