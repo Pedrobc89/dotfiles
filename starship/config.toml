@@ -7,6 +7,7 @@ $time\
 [](bg:surface1 fg:surface1)\
 $username\
 $hostname\
+ \
 [](bg:blue fg:surface1)\
 $directory\
 $custom
@@ -45,14 +46,14 @@ format = "[ $symbol ](bg:surface1 fg:surface1)"
 show_always = true
 style_user = "bg:surface1"
 style_root = "bg:surface1"
-format = '[$user@]($style)'
+format = '[$user ]($style)'
 disabled = false
 
 [hostname]
-ssh_only = false
+ssh_only = true
 style = "bg:surface1"
 trim_at = "."
-ssh_symbol = "🌐"
+ssh_symbol = ""
 format = "[$ssh_symbol$hostname ]($style)"
 
 [python]
