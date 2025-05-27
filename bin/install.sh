@@ -7,9 +7,9 @@ function brew_install(){
 
   # Add brew path
   if [ "$linux" = true ] then
-    local brew_path = "$HOME/.linuxbrew/bin"
+    local brew_path="$HOME/.linuxbrew/bin"
   else
-    local brew_path = "/opt/homebrew/bin"
+    local brew_path="/opt/homebrew/bin"
   fi
   echo "brew_path=$brew_path" >> $HOME/.profile
 
@@ -34,7 +34,7 @@ function install() {
   fi
 
   # update/upgrade apt if linux
-  if [ "$linux" = true ]; then
+  if [ "$linux" == true ]; then
     echo "Updating apt"
     sudo apt update
     sudo apt upgrade
@@ -58,21 +58,21 @@ function install() {
   brew install starship
 
   # install apps and casks for macos
-  if [ "$macos" = true ]; then
+  if [ "$macos" == true ]; then
     brew install iterm2
     brew install --cask docker
     brew install --cask google-chrome
     brew install --cask 1password
     brew install karabiner-elements
-  elif [[ "$linux" = true ]]; then
+  elif [[ "$linux" == true ]]; then
     brew install xsel docker docker-compose 
   fi
 
   # install hackfont on macos we can use brew
-  if [ "$macos" = true ]; then
+  if [ "$macos" == true ]; then
     brew tap homebrew/cask-fonts
     brew install --cask font-hack-nerd-font
-  elif [ "$linux" = true ]; then
+  elif [ "$linux" == true ]; then
     # Download the zip file from
     curl --location https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/Hack.zip --output ~/font-hack-nerd-font.zip
     unzip ~/font-hack-nerd-font.zip -d ~/font-hack-nerd-font
@@ -83,10 +83,10 @@ function install() {
     rm -r ~/font-hack-nerd-font ~/font-hack-nerd-font.zip
   fi
 
-  if [ "$linux" = true ]; then
+  if [ "$linux" == true ]; then
     # Cattpuccin as terminal colorscheme
     curl -L https://raw.githubusercontent.com/catppuccin/gnome-terminal/v0.2.0/install.py | python3 -
-  elif [ "$macos" = true ]; then
+  elif [ "$macos" == true ]; then
     
   fi
 
@@ -151,7 +151,7 @@ function install() {
   ln -sf ~/.dotfiles/tmux/tmux.conf ~/.tmux.conf
   ln -sf ~/.dotfiles/zsh/zshrc ~/.zshrc
   ln -sf ~/.dotfiles/nvim ~/.config/nvim
-  if [ "$macos" = true ]; then
+  if [ "$macos" == true ]; then
     ln -sf ~/.dotfiles/karabiner/karabiner.json ~/.config/karabiner/karabiner.json
   fi
 
