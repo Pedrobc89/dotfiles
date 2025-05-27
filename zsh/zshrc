@@ -41,6 +41,7 @@ plugins=(
   zsh-syntax-highlighting
 )
 
+
 ZSH_TMUX_AUTOSTART=false
 
 source $ZSH/oh-my-zsh.sh
