@@ -13,11 +13,21 @@ function brew_install(){
   fi
   echo "brew_path=$brew_path" >> $HOME/.profile
 
+  echo >> /home/$HOME/.bashrc
+  echo 'eval "$($brew_path/brew shellenv)"' >> /home/$HOME/.bashrc
+  eval "$($brew_path/brew shellenv)"
+
   echo 'eval "$($brew_path/brew shellenv)"' >>$HOME/.profile
   eval "$($brew_path/brew shellenv)"
 
   # run brew update, upgrade and doctor non interactive
   brew update && brew upgrade && brew doctor
+}
+
+function brew_install_packages(){
+  brew install \
+    eza dust fzf mosh python neovim bat btop cmake go gcc k9s ipython lazydocker lazygit telnet docker node starship tealdeer tmux tree-sitter vim wget zoxide yazi zsh rust imagemagick lsusb ld
+
 }
 
 function install() {
