@@ -55,10 +55,16 @@ export LANG=en_US.UTF-8
 export EDITOR='nvim'
 
 # ssh
-zstyle :omz:plugins:ssh-agent identities github-Pedrobc89
+zstyle :omz:plugins:ssh-agent identities github-Pedrobc89 github-shippo
 
 # Aliases
 TARGET_DIR=$DOTFILES/zsh/aliases
+for file in "$TARGET_DIR"/*.zsh(N) ; do
+    source "$file"
+done
+
+# Work
+TARGET_DIR=$DOTFILES/zsh/work
 for file in "$TARGET_DIR"/*.zsh(N) ; do
     source "$file"
 done
