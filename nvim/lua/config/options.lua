@@ -8,3 +8,5 @@ vim.api.nvim_create_user_command("Wq", "wq", {})
 vim.api.nvim_create_user_command("Wqa", "wqa", {})
 
 vim.o.exrc = true
+
+vim.g.autoformat = false
