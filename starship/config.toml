@@ -1,18 +1,20 @@
 format = """
+[](surface0)\
 $character\
 $os\
-$python\
-$docker_context\
 $time\
-[](bg:surface1 fg:surface1)\
+[](fg:surface1 bg: surface0)\
 $username\
 $hostname\
- \
-[](bg:blue fg:surface1)\
+[](fg:surface1 bg:blue)\
 $directory\
+[](fg:flamingo bg:teal)\
+$python\
+$docker_context\
+[](fg:flamingo bg:teal)\
 $custom
 """
-#
+
 # $c\
 # $elixir\
 # $elm\
@@ -25,6 +27,7 @@ $custom
 # $nim\
 # $rust\
 # $scala\
+# $container\
 # [](bg:#06969A fg:#86BBD8)\
 # [ ](fg:surface1)\
 
@@ -35,10 +38,10 @@ palette = "catppuccin_mocha"
 
 # Starship modules
 [character]
-success_symbol = ""
-error_symbol = "[✘](fg:red bg:surface1)"
-vimcmd_symbol = "[](fg:yellow bg:surface1)"
-format = "[ $symbol ](bg:surface1 fg:surface1)"
+success_symbol = " "
+error_symbol = "[✘](fg:red bg:surface0)"
+vimcmd_symbol = "[](fg:yellow bg:surface0)"
+format = "[$symbol ](fg:subtext1 bg:surface0)"
 
 # You can also replace your username with a neat symbol like   or disable this
 # and use the os module below
@@ -46,7 +49,7 @@ format = "[ $symbol ](bg:surface1 fg:surface1)"
 show_always = true
 style_user = "bg:surface1"
 style_root = "bg:surface1"
-format = '[$user@]($style)'
+format = '[ $user@]($style)'
 disabled = false
 
 [hostname]
@@ -58,15 +61,15 @@ format = "[$hostname ]($style)"
 
 [python]
 style = "bg:surface1"
-symbol = "🐍"
+symbol = ""
 version_format = "${major}.${minor}"
-format = '[${symbol}${version} (\($virtualenv\) )]($style)'
+format = '[ ${virtualenv} ${symbol} ${version} ]($style)'
 
 
 # An alternative to the username module which displays a symbol that
 # represents the current operating system
 [os]
-style = "bg:surface1"
+style = "bg:surface0"
 disabled = false      # Disabled by default
 
 [os.symbols]
@@ -76,7 +79,7 @@ Macos = " "
 Ubuntu = " "
 
 [directory]
-style = "bg:blue black"
+style = "bg:blue fg:surface0"
 format = "[ $path ]($style)"
 truncation_length = 3
 truncation_symbol = ""
@@ -99,14 +102,14 @@ truncation_symbol = ""
 # when = 'git rev-parse --is-inside-work-tree 2>/dev/null && [ -n "$(git status --porcelain)" ]'
 when = 'git rev-parse --is-inside-work-tree >/dev/null 2>&1 && ! git diff-index --quiet HEAD --'
 command = "git symbolic-ref --short HEAD 2>/dev/null"
-style = "bg:yellow fg:black"
+style = "bg:yellow fg:crust"
 format = "[](bg:yellow fg:blue)[  $output ]($style)[ ](fg:yellow)"
 
 [custom.git_branch_clean]
 # when = 'git rev-parse --is-inside-work-tree 2>/dev/null && [ -z "$(git status --porcelain 2>/dev/null)" ]'
 when = 'git rev-parse --is-inside-work-tree >/dev/null 2>&1 && git diff-index --quiet HEAD --'
 command = 'git symbolic-ref --short HEAD 2>/dev/null'
-style = "bg:green fg:black"
+style = "bg:green fg:crust"
 format = "[](fg:blue bg:green)[  $output ]($style)[ ](fg:green)"
 
 [custom.outside_git]
@@ -186,8 +189,8 @@ format = '[ $symbol ($version) ]($style)'
 [time]
 disabled = false
 time_format = "%R"         # Hour:Minute Format
-style = "bg:surface1"
-format = '[$time]($style)'
+style = "bg:surface0"
+format = '[$time ]($style)'
 
 [palettes.catppuccin_mocha]
 rosewater = "#f5e0dc"
@@ -215,4 +218,4 @@ surface1 = "#45475a"
 surface0 = "#313244"
 base = "#1e1e2e"
 mantle = "#181825"
-crust = "#11111b"
+cgust = "#11111b"
