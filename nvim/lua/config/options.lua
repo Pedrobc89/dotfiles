@@ -10,3 +10,5 @@ vim.api.nvim_create_user_command("Wqa", "wqa", {})
 vim.o.exrc = true
 
 vim.g.autoformat = false
+
+vim.o.clipboard = "unnamedplus" -- Use system clipboard
