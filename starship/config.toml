@@ -2,7 +2,8 @@ format = """
 $os\
 $username\
 $time\
-[ ](bg:surface0)\
+$aws\
+$docker_context\
 $c\
 $rust\
 $golang\
@@ -12,6 +13,8 @@ $java\
 $kotlin\
 $haskell\
 $python\
+$terraform\
+$kubernetes\
 $directory\
 $git_branch\
 $git_status\
@@ -91,21 +94,24 @@ format = '[](lavender bg:surface0)[$symbol ](fg:crust bg:lavender)[ $branch ]
 # typechanged = " typechanged "
 ignore_submodules = true
 disabled = false
-format = "[](mauve bg:surface0)[ ](bg:mauve fg:crust)[ $all_status$ahead_behind](fg:yellow bg:surface0)"
+format = "(bg:mauve fg:crust)[$all_status$ahead_behind](fg:yellow bg:surface0)"
+# format = "[](mauve bg:surface0)[ ](bg:mauve fg:crust)[ $all_status$ahead_behind](fg:yellow bg:surface0)"
 
 [nodejs]
 symbol = ""
-style = "bg:surface2"
 format = '[](rosewater bg:surface0)[$symbol ](bg:rosewater fg:crust)[ $version ](bg:surface0)'
+
+[aws]
+symbol = " "
+format = '[](rosewater bg:surface0)[$symbol ](bg:rosewater fg:crust)[ $region ](bg:surface0)'
+disabled = true
 
 [c]
 symbol = " "
-style = "bg:surface2"
 format = '[](rosewater bg:surface0)[$symbol ](bg:rosewater fg:crust)[ $version ](bg:surface0)'
 
 [rust]
 symbol = ""
-style = "bg:surface2"
 format = '[](rosewater bg:surface0)[$symbol ](bg:rosewater fg:crust)[ $version ](bg:surface0)'
 
 [golang]
@@ -135,12 +141,25 @@ format = '[](rosewater bg:surface0)[$symbol ](bg:rosewater fg:crust)[ $versio
 
 [python]
 symbol = ""
-format = '[](rosewater bg:surface0)[$symbol ](bg:rosewater fg:crust)[ $version ](bg:surface0)'
+version_format = '${raw}'
+format = '[](rosewater bg:surface0)[$symbol ](bg:rosewater fg:crust)[ $version](bg:surface0)[($virtualenv) ](fg:rosewater bg:surface0)'
 
 [docker_context]
-symbol = ""
+symbol = ""
 style = "bg:sapphire"
-format = '[[ $symbol( $context) ](fg:crust bg:sapphire)]($style)'
+only_with_files = true
+detect_files = ["docker-compose.yml", "docker-compose.yaml", "compose.yml", "compose.yaml", "Dockerfile"]
+# format = '[[ $symbol( $context) ](fg:crust bg:sapphire)]($style)'
+format = '[](fg:sapphire bg:surface0)[$symbol ](bg:sapphire fg:crust)[ $context ](bg:surface0)'
+
+[kubernetes]
+symbol = "󱃾 "
+format = '[](fg:sapphire bg:surface0)[$symbol ](bg:sapphire fg:crust)[ $context $namespace](bg:surface0)'
+disabled = true
+
+[terraform]
+symbol = " "
+format = '[](fg:sapphire bg:surface0)[$symbol ](bg:sapphire fg:crust)[ $workspace ](bg:surface0)'
 
 [conda]
 symbol = "  "
@@ -152,7 +171,7 @@ ignore_base = false
 disabled = false
 time_format = "%R"
 style = "bg:surface0"
-format = '[ $time]($style)'
+format = '[ $time ]($style)'
 
 [line_break]
 disabled = false
