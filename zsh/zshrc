@@ -24,18 +24,19 @@ COMPLETION_WAITING_DOTS="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 plugins=(
-  git
-  gitfast
-  python
-  tmux
+  branch
+  colored-man-pages
+  colorize
   docker
   docker-compose
-  kubectl
-  branch
-  colorize
   gh
+  git
+  gitfast
+  kubectl
+  python
   ssh-agent
-  colored-man-pages
+  starship
+  tmux
   zoxide
 )
 
