@@ -9,10 +9,11 @@ return {
       cmd = "find",
       hidden = true,
       exclude = { "*/venv/*", "*/.venv/*" },
+      truncate = 50,
     },
     explorer = {
       follow_file = false,
-      auto_close = true,
+      auto_close = false,
       layout = {
         preset = "sidebar",
         -- TODO: preview in main window
