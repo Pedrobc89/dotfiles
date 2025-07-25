@@ -1,5 +1,0 @@
-services:
-  pyright:
-    build: ./pyright
-    image: lsp/pyright
-    stdin_open: true
