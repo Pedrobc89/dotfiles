@@ -1,7 +1,8 @@
 format = """
 $os\
-$username\
 $time\
+$username\
+$hostname\
 $aws\
 $docker_context\
 $c\
@@ -29,8 +30,7 @@ palette = 'catppuccin_mocha'
 
 [os]
 disabled = false
-style = "bg:text fg:crust"
-format = "[](fg:text)[$symbol ]($style)"
+format = "[](fg:lavender)[$symbol ](bg:lavender fg:crust)"
 
 
 [os.symbols]
@@ -56,13 +56,16 @@ RedHatEnterprise = "󱄛"
 
 [username]
 show_always = false
-style_user = "bg:base fg:text"
-style_root = "bg:base fg:text"
-format = '[ $user]($style)'
+style_user = "bg:surface0 fg:text"
+style_root = "bg:surface0 fg:text"
+format = '[](fg:blue bg:surface0)[ ](bg:blue fg:crust)[ $user ]($style)'
+
+[hostname]
+ssh_symbol = ' '
+format = '[](fg:sapphire bg:surface0)[$ssh_symbol](bg:sapphire fg:crust)[ $hostname ](bg:surface0 fg:text)'
 
 [directory]
-style = "bg:surface0 fg:text"
-format = "[](blue bg:surface0)[ ](bg:blue fg:crust)()[ $path]($style)[ ](bg:surface0)"
+format = "[](teal bg:surface0)[ ](bg:teal fg:crust)()[ $path ](bg:surface0 fg:text)"
 truncation_length = 3
 truncation_symbol = ""
 
@@ -76,8 +79,7 @@ truncation_symbol = ""
 [git_branch]
 symbol = ""
 style = "bg:lavender"
-# format = '[[ $symbol $branch ](fg:crust bg:lavender)]($style)'
-format = '[](lavender bg:surface0)[$symbol ](fg:crust bg:lavender)[ $branch ](bg:surface0 fg:text)'
+format = '[](mauve bg:surface0)[$symbol ](fg:crust bg:mauve)[ $branch ](bg:surface0 fg:text)'
 
 [git_status]
 # conflicted = " conflicted "
@@ -99,50 +101,50 @@ format = "(bg:mauve fg:crust)[$all_status$ahead_behind](fg:yellow bg:surface0)"
 
 [nodejs]
 symbol = ""
-format = '[](rosewater bg:surface0)[$symbol ](bg:rosewater fg:crust)[ $version ](bg:surface0)'
+format = '[](sky bg:surface0)[$symbol ](bg:sky fg:crust)[ $version ](bg:surface0)'
 
 [aws]
 symbol = " "
-format = '[](rosewater bg:surface0)[$symbol ](bg:rosewater fg:crust)[ $region ](bg:surface0)'
+format = '[](sky bg:surface0)[$symbol ](bg:sky fg:crust)[ $region ](bg:surface0)'
 disabled = true
 
 [c]
 symbol = " "
-format = '[](rosewater bg:surface0)[$symbol ](bg:rosewater fg:crust)[ $version ](bg:surface0)'
+format = '[](sky bg:surface0)[$symbol ](bg:sky fg:crust)[ $version ](bg:surface0)'
 
 [rust]
 symbol = ""
-format = '[](rosewater bg:surface0)[$symbol ](bg:rosewater fg:crust)[ $version ](bg:surface0)'
+format = '[](sky bg:surface0)[$symbol ](bg:sky fg:crust)[ $version ](bg:surface0)'
 
 [golang]
 symbol = ""
 style = "bg:surface2"
-format = '[](rosewater bg:surface0)[$symbol ](bg:rosewater fg:crust)[ $version ](bg:surface0)'
+format = '[](sky bg:surface0)[$symbol ](bg:sky fg:crust)[ $version ](bg:surface0)'
 
 [php]
 symbol = ""
 style = "bg:surface2"
-format = '[](rosewater bg:surface0)[$symbol ](bg:rosewater fg:crust)[ $version ](bg:surface0)'
+format = '[](sky bg:surface0)[$symbol ](bg:sky fg:crust)[ $version ](bg:surface0)'
 
 [java]
 symbol = " "
 style = "bg:surface2"
-format = '[](rosewater bg:surface0)[$symbol ](bg:rosewater fg:crust)[ $version ](bg:surface0)'
+format = '[](sky bg:surface0)[$symbol ](bg:sky fg:crust)[ $version ](bg:surface0)'
 
 [kotlin]
 symbol = ""
 style = "bg:surface2"
-format = '[](rosewater bg:surface0)[$symbol ](bg:rosewater fg:crust)[ $version ](bg:surface0)'
+format = '[](sky bg:surface0)[$symbol ](bg:sky fg:crust)[ $version ](bg:surface0)'
 
 [haskell]
 symbol = ""
 style = "bg:surface2"
-format = '[](rosewater bg:surface0)[$symbol ](bg:rosewater fg:crust)[ $version ](bg:surface0)'
+format = '[](sky bg:surface0)[$symbol ](bg:sky fg:crust)[ $version ](bg:surface0)'
 
 [python]
 symbol = ""
 version_format = '${raw}'
-format = '[](rosewater bg:surface0)[$symbol ](bg:rosewater fg:crust)[ $version](bg:surface0)[($virtualenv) ](fg:rosewater bg:surface0)'
+format = '[](sky bg:surface0)[$symbol ](bg:sky fg:crust)[ $version](bg:surface0)[($virtualenv) ](fg:sky bg:surface0)'
 
 [docker_context]
 symbol = ""
