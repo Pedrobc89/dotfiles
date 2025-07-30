@@ -71,7 +71,7 @@ function brew_install_formulae() {
   local items=(
     bat btop curl dust eza fzf gcc gh go ipython k9s kubernetes-cli lazydocker
     lazygit lua luajit mosh neovim node nvm python@3.13 ripgrep rust starship
-    tealdeer telnet tmux tree-sitter vim wget zoxide zsh
+    tealdeer telnet tmux tree-sitter vim wget zoxide zsh vivid
   )
 
   brew_install_items formula ${items[*]}
