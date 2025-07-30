@@ -1,5 +1,5 @@
 export DOTFILES=$HOME/.dotfiles
-export XDG_CONFIG_HOME=$DOTFILES
+export XDG_CONFIG_HOME=$HOME/.config
 
 export PATH=$DOTFILES/bin:$HOME/bin:$PATH
 
