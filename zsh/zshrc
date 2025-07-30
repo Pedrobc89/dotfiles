@@ -1,51 +1,16 @@
-# profiling zsh
-
-# zmodload zsh/zprof
-
 export DOTFILES=$HOME/.dotfiles
-export PATH=$DOTFILES/bin:$HOME/bin:/usr/local/bin:$PATH
+export XDG_CONFIG_HOME=$DOTFILES
 
+export PATH=$DOTFILES/bin:$HOME/bin:$PATH
 
 # Source the configured path variables
 test -e "${HOME}/.profile" && source "${HOME}/.profile"
 
-
-# Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
-
-# Disables virtual environment prompt change (agnoster-custom theme will show it)
-export VIRTUAL_ENV_DISABLE_PROMPT=1
-export FZF_DEFAULT_COMMAND='find .'
-
-ZSH_THEME="agnoster" # set by `omz`
-HYPHEN_INSENSITIVE="true"
-DISABLE_AUTO_TITLE="true"
-COMPLETION_WAITING_DOTS="true"
-DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-plugins=(
-  branch
-  colored-man-pages
-  colorize
-  docker
-  docker-compose
-  gh
-  git
-  gitfast
-  kubectl
-  python
-  ssh-agent
-  starship
-  tmux
-  zoxide
-)
-
-
-ZSH_TMUX_AUTOSTART=false
-
-source $ZSH/oh-my-zsh.sh
-
-KEYTIMEOUT=1
+if type brew &>/dev/null; then
+  eval "$(brew shellenv)"
+  brew_prefix=$(brew --prefix)
+  source $brew_prefix/opt/zinit/zinit.zsh
+fi
 
 export LC_ALL="en_US.UTF-8"
 export LANG=en_US.UTF-8
@@ -53,35 +18,53 @@ export LANG=en_US.UTF-8
 # Preferred editor for local and remote sessions
 export EDITOR='nvim'
 
-# ssh
-zstyle :omz:plugins:ssh-agent identities github-Pedrobc89 github-shippo
-
 # Aliases
 TARGET_DIR=$DOTFILES/zsh/aliases
 for file in "$TARGET_DIR"/*.zsh(N) ; do
     source "$file"
 done
 
-# Work
+# Work environment
 TARGET_DIR=$DOTFILES/zsh/work
 for file in "$TARGET_DIR"/*.zsh(N) ; do
     source "$file"
 done
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+setopt AUTO_CD
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_SAVE_NO_DUPS
+setopt SHARE_HISTORY
 
-export STARSHIP_CONFIG=$DOTFILES/starship/config.toml
+# Key bindings
+# bindkey -v  # vi mode
+# bindkey '^x^e'  # edit line in editor
+# bindkey '^r'  # backward search
 
-if type brew &>/dev/null; then
-  brew_prefix=$(brew --prefix)
+if type zinit &>/dev/null; then
+  zinit light zsh-users/zsh-syntax-highlighting
+  zinit light zsh-users/zsh-completions
+  zinit light zsh-users/zsh-autosuggestions
 
-  source $brew_prefix/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-  FPATH=$brew_prefix/share/zsh-completions:$FPATH
-
-  autoload -Uz compinit
-  compinit
+  zinit snippet OMZP::branch
+  zinit snippet OMZP::brew
+  zinit snippet OMZP::colored-man-pages
+  zinit snippet OMZP::colorize
+  zinit snippet OMZP::docker-compose
+  zinit snippet OMZP::git
+  zinit snippet OMZP::kubectl
+  zinit snippet OMZP::python
+  zinit snippet OMZP::ssh-agent
+  zinit snippet OMZP::starship
+  zinit snippet OMZP::zoxide
 fi
 
-# zprof > /tmp/zsh_prof
+# Disabled plugins
+# zinit snippet OMZP::docker
+# zinit snippet OMZP::gh
+# zinit snippet OMZP::tmux
+
+# ssh
+zstyle :omz:plugins:ssh-agent identities github-Pedrobc89 github-shippo
+
+autoload -Uz compinit
+compinit
