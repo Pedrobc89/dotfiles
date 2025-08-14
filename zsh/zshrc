@@ -35,15 +35,20 @@ setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_SAVE_NO_DUPS
 setopt SHARE_HISTORY
 
-# Key bindings
-# bindkey -v  # vi mode
-# bindkey '^x^e'  # edit line in editor
-# bindkey '^r'  # backward search
 
 if type zinit &>/dev/null; then
   zinit light zsh-users/zsh-syntax-highlighting
   zinit light zsh-users/zsh-completions
   zinit light zsh-users/zsh-autosuggestions
+
+  # Bind arrow keys for history substring search
+  zinit light zsh-users/zsh-history-substring-search
+  bindkey '^[[A' history-substring-search-up     # Up arrow
+  bindkey '^[[B' history-substring-search-down   # Down arrow
+  HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND=0
+  HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND=0
+  HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_CURSOR=0
+
 
   zinit snippet OMZP::branch
   zinit snippet OMZP::brew
@@ -56,15 +61,23 @@ if type zinit &>/dev/null; then
   zinit snippet OMZP::ssh-agent
   zinit snippet OMZP::starship
   zinit snippet OMZP::zoxide
+
+  #fzf-tab
+  zinit light Aloxaf/fzf-tab
+
+  # Disabled plugins
+  # zinit snippet OMZP::docker
+  # zinit snippet OMZP::gh
+  # zinit snippet OMZP::tmux
+
 fi
 
-# Disabled plugins
-# zinit snippet OMZP::docker
-# zinit snippet OMZP::gh
-# zinit snippet OMZP::tmux
+
 
 # ssh
 zstyle :omz:plugins:ssh-agent identities github-Pedrobc89 github-shippo
 
 autoload -Uz compinit
 compinit
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

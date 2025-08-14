@@ -1,6 +1,4 @@
 alias :q='exit'
-alias l="ls -la"
-alias ll="ls -la"
+alias md="mkdir -p"
 
-alias zshconfig="vim $DOTFILES/zsh/zshrc"
-alias vimconfig="cd $DOTFILES/vim ; vim -O vimrc vimrc.vundle"
+alias zshconfig="${EDITOR} ${DOTFILES}/zsh/zshrc"
