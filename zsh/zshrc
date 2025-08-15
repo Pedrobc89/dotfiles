@@ -30,11 +30,19 @@ for file in "$TARGET_DIR"/*.zsh(N) ; do
     source "$file"
 done
 
+# Where to store history
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+
+# Share history between all sessions instantly
 setopt AUTO_CD
+setopt HIST_IGNORE_SPACE        # Ignore commands starting with space
+setopt INC_APPEND_HISTORY       # Append to history file, don't overwrite
+setopt SHARE_HISTORY            # Share command history between sessions
+setopt HIST_IGNORE_DUPS         # Ignore duplicate commands
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_SAVE_NO_DUPS
-setopt SHARE_HISTORY
-
 
 if type zinit &>/dev/null; then
   zinit light zsh-users/zsh-syntax-highlighting
@@ -61,6 +69,7 @@ if type zinit &>/dev/null; then
   zinit snippet OMZP::ssh-agent
   zinit snippet OMZP::starship
   zinit snippet OMZP::zoxide
+  zinit snippet OMZP::fzf
 
   #fzf-tab
   zinit light Aloxaf/fzf-tab
@@ -72,7 +81,7 @@ if type zinit &>/dev/null; then
 
 fi
 
-
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # ssh
 zstyle :omz:plugins:ssh-agent identities github-Pedrobc89 github-shippo
@@ -80,4 +89,3 @@ zstyle :omz:plugins:ssh-agent identities github-Pedrobc89 github-shippo
 autoload -Uz compinit
 compinit
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
