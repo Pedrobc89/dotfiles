@@ -71,7 +71,7 @@ function brew_install_formulae() {
   local items=(
     bat btop curl dust eza fzf gcc gh go ipython k9s kubernetes-cli lazydocker
     lazygit lua luajit mosh neovim node nvm python@3.13 ripgrep rust starship
-    tealdeer telnet tmux tree-sitter vim wget zoxide zsh vivid
+    tealdeer tmux tree-sitter vim wget zoxide zsh vivid zinit
   )
 
   brew_install_items formula ${items[*]}
@@ -109,27 +109,6 @@ function install_omz() {
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 }
 
-function link_dotfiles() {
-
-
-  # Remove previous dotfiles or symlinks
-  echo "Removing existing dotfiles"
-  # test if file exists before removing
-  [ -f ~/.zshrc ] && rm ~/.zshrc
-  [ -f ~/.tmux.conf ] && rm ~/.tmux.conf
-
-  echo "Linking new dotfiles"
-   ln -sf ~/.dotfiles/tmux/tmux.conf ~/.tmux.conf
-   ln -sf ~/.dotfiles/zsh/zshrc ~/.zshrc
-
-  echo "Replacing config dirs"
-  # for every directory or file inside .dotfiles/config
-  for item in "${DOTFILES}/config/"*; do
-    local item_name=$(basename "$item")
-    ln -sf "$item" "${XDG_CONFIG_HOME}/${item_name}"
-  done
-}
-
 function macos_install() {
 
   brew_install_formulae
@@ -143,7 +122,7 @@ function linux_install() {
 
 
 
-function install() {
+function main() {
   install_brew
 
   if [ "$(uname)" == "Darwin" ]; then
@@ -154,7 +133,7 @@ function install() {
     linux_install
   fi
 
-  link_dotfiles
+  ./link_dotfiles
 }
 
-install
+main
