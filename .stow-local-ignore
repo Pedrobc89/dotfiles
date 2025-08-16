@@ -1,0 +1,11 @@
+bin
+applescripts
+.luarc.json
+tmux
+zsh
+
+.git
+.gitignore
+.gitconfig
+README
+

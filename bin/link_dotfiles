@@ -15,7 +15,7 @@ function link_dotfiles() {
   # for every directory or file inside .dotfiles/config
   for item in "${DOTFILES}/config/"*; do
     local item_name=$(basename "$item")
-    ln -sf "$item" "${XDG_CONFIG_HOME}/${item_name}"
+    echo "ln -sf $item ${XDG_CONFIG_HOME}/${item_name}"
   done
 }
 
