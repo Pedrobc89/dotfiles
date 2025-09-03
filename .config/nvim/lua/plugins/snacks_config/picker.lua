@@ -9,16 +9,19 @@ return {
       cmd = "find",
       hidden = true,
       exclude = { "*/venv/*", "*/.venv/*" },
-      truncate = 50,
+      truncate = 1000,
+    },
+    grep = {
+      truncate = 1000,
+    },
+    lsp_references = {
+      format = "filename",
+      truncate = 1000,
     },
     explorer = {
       follow_file = false,
+      hidden = true,
       auto_close = false,
-      layout = {
-        preset = "sidebar",
-        -- TODO: preview in main window
-        -- preview = "main",
-      },
       win = {
         input = {
           keys = {
