@@ -142,9 +142,9 @@ style = "bg:surface2"
 format = '[](sky bg:surface0)[$symbol ](bg:sky fg:crust)[ $version ](bg:surface0)'
 
 [python]
-symbol = ""
+symbol = "( $virtualenv)"
 version_format = '${raw}'
-format = '[](sky bg:surface0)[$symbol ](bg:sky fg:crust)[ $version](bg:surface0)[($virtualenv) ](fg:sky bg:surface0)'
+format = '[](sky bg:surface0)[$symbol ](bg:sky fg:crust)[ $version ](bg:surface0)'
 
 [docker_context]
 symbol = ""
