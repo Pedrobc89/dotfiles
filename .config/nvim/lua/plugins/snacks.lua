@@ -5,6 +5,7 @@ return {
     dashboard = require("plugins.snacks_config.dashboard"),
     scroll = { enabled = false },
     statuscolumn = { enabled = true },
+    explorer = { enabled = false },
   },
   keys = require("plugins.snacks_config.keymaps"),
 }

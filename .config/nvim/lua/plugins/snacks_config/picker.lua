@@ -19,6 +19,7 @@ return {
       truncate = 1000,
     },
     explorer = {
+      enabled = false,
       follow_file = false,
       hidden = true,
       auto_close = false,

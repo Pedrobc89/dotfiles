@@ -41,8 +41,12 @@ return {
   {"<leader>s:",      function() Snacks.picker.commands() end, desc = "Search command",},
   {"<leader>:",       function() Snacks.picker.command_history() end, desc = "Command history",},
   -- Explorer
-  { "<leader>e",      function() Snacks.explorer() end, desc = "File Explorer" },
-  { "<leader>r",      function() Snacks.explorer.reveal() end, desc = "File Explorer" },
+  { "<leader>fe",     false },
+  { "<leader>fE",     false },
+  { "<leader>e",      false },
+  { "<leader>E",      false },
+  -- { "<leader>e",      function() Snacks.explorer() end, desc = "File Explorer" },
+  -- { "<leader>r",      function() Snacks.explorer.reveal() end, desc = "File Explorer" },
   -- Notifications
   { "<leader>n",      "", desc = "Notifications" },
   { "<leader>nl",     function() Snacks.picker.notifications() end, desc = "Notifications list" },
