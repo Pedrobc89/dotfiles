@@ -5,3 +5,5 @@
 
 zsh/work/
 zsh/work/**
+
+.config/karabiner/automatic_backups/*

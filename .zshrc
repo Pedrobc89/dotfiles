@@ -1,6 +1,7 @@
 export DOTFILES=$HOME/.dotfiles
 export XDG_CONFIG_HOME=$HOME/.config
 
+G
 export PATH=$DOTFILES/bin:$HOME/bin:$PATH
 
 # Source the configured path variables
@@ -56,6 +57,14 @@ if type zinit &>/dev/null; then
   HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND=0
   HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND=0
   HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_CURSOR=0
+
+  # Bind ctrl + X ctrl + e to edit command line in $EDITOR
+  # Bind "n" in vi mode to open command line in $EDITOR
+  autoload -z edit-command-line
+  zle -N edit-command-line
+  bindkey "^X^E" edit-command-line
+  bindkey -M vicmd n edit-command-line
+
 
 
   zinit snippet OMZP::branch
