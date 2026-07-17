@@ -1,8 +1,11 @@
+local is_ssh = vim.env.SSH_CONNECTION ~= nil or vim.env.SSH_CLIENT ~= nil or vim.env.SSH_TTY ~= nil
+
 return {
   layout = {
     preset = function()
       return vim.o.columns >= 120 and "telescope" or "vertical"
     end,
+    preview = not is_ssh,
   },
   sources = {
     grep = {

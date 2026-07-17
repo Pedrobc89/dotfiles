@@ -38,6 +38,26 @@ return {
           end
         end, { "i", "s" }),
       })
+
+      -- Disable autocomplete on typing over SSH (can trigger manually via <C-Space>)
+      local is_ssh = vim.env.SSH_CONNECTION ~= nil or vim.env.SSH_CLIENT ~= nil or vim.env.SSH_TTY ~= nil
+      if is_ssh then
+        opts.completion = opts.completion or {}
+        opts.completion.autocomplete = false
+      end
+      return opts
+    end,
+  },
+  {
+    "saghen/blink.cmp",
+    opts = function(_, opts)
+      local is_ssh = vim.env.SSH_CONNECTION ~= nil or vim.env.SSH_CLIENT ~= nil or vim.env.SSH_TTY ~= nil
+      if is_ssh then
+        opts.completion = opts.completion or {}
+        opts.completion.autocomplete = opts.completion.autocomplete or {}
+        opts.completion.autocomplete.enabled = false
+      end
+      return opts
     end,
   },
 }
