@@ -1,7 +1,6 @@
 export DOTFILES=$HOME/.dotfiles
 export XDG_CONFIG_HOME=$HOME/.config
 
-G
 export PATH=$DOTFILES/bin:$HOME/bin:$PATH
 
 # Source the configured path variables
@@ -46,25 +45,25 @@ setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_SAVE_NO_DUPS
 
 if type zinit &>/dev/null; then
-  zinit light zsh-users/zsh-syntax-highlighting
+  zinit ice wait lucid
   zinit light zsh-users/zsh-completions
+
+  zinit ice wait lucid
   zinit light zsh-users/zsh-autosuggestions
 
-  # Bind arrow keys for history substring search
+  #fzf-tab
+  zinit ice wait lucid
+  zinit light Aloxaf/fzf-tab
+
+  zinit ice wait lucid
   zinit light zsh-users/zsh-history-substring-search
+
+  # Bind arrow keys for history substring search
   bindkey '^[[A' history-substring-search-up     # Up arrow
   bindkey '^[[B' history-substring-search-down   # Down arrow
   HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND=0
   HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND=0
   HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_CURSOR=0
-
-  # Bind ctrl + X ctrl + e to edit command line in $EDITOR
-  # Bind "n" in vi mode to open command line in $EDITOR
-  autoload -z edit-command-line
-  zle -N edit-command-line
-  bindkey "^X^E" edit-command-line
-  bindkey -M vicmd n edit-command-line
-
 
 
   zinit snippet OMZP::branch
@@ -80,8 +79,7 @@ if type zinit &>/dev/null; then
   zinit snippet OMZP::zoxide
   zinit snippet OMZP::fzf
 
-  #fzf-tab
-  zinit light Aloxaf/fzf-tab
+
 
   # Disabled plugins
   # zinit snippet OMZP::docker
@@ -96,5 +94,13 @@ fi
 zstyle :omz:plugins:ssh-agent identities github-Pedrobc89 github-shippo
 
 autoload -Uz compinit
-compinit
+compinit -C
 
+if type zinit &>/dev/null; then
+  zinit light zsh-users/zsh-syntax-highlighting
+fi
+
+
+
+# Added by Antigravity CLI installer
+export PATH="/home/pedro/.local/bin:$PATH"
