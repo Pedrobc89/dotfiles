@@ -5,8 +5,14 @@ return {
     end,
   },
   sources = {
+    grep = {
+      hidden = true,
+      exclude = { "*/venv/*", "*/.venv/*" },
+      truncate = 1000,
+
+    },
     files = {
-      cmd = "find",
+      cmd = "fd",
       hidden = true,
       exclude = { "*/venv/*", "*/.venv/*" },
       truncate = 1000,
