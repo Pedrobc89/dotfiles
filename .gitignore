@@ -6,4 +6,7 @@
 zsh/work/
 zsh/work/**
 
+.config/btop/*
 .config/karabiner/automatic_backups/*
+.config/github-copilot/*
+
