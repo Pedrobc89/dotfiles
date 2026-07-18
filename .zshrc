@@ -7,7 +7,6 @@ export PATH=$DOTFILES/bin:$HOME/bin:$PATH
 test -e "${HOME}/.profile" && source "${HOME}/.profile"
 
 if type brew &>/dev/null; then
-  eval "$(brew shellenv)"
   brew_prefix=$(brew --prefix)
   source $brew_prefix/opt/zinit/zinit.zsh
 fi
